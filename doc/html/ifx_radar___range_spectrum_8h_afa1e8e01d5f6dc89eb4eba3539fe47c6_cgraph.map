@@ -1,0 +1,25 @@
+<map id="ifx_range_spectrum_run_r" name="ifx_range_spectrum_run_r">
+<area shape="rect" id="node2" href="$ifx_radar___range_spectrum_8c.html#abee463774c8382c610a4f9ef723953ef" title="get_index_of_highest\l_energy_r" alt="" coords="224,90,381,131"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_spectrum_8c.html#a31dc9cf3742386dec838d12d5f4bee58" title="ifx_range_spectrum\l_coherent_integration_run_r" alt="" coords="201,271,404,313"/>
+<area shape="rect" id="node3" href="$ifx_radar___matrix_8c.html#a9f0fbcb2f70c189bb92d84d991a9330a" title="Obtains a user defined value set at a given row,column location in a real matrix. ..." alt="" coords="457,5,641,32"/>
+<area shape="rect" id="node5" href="$ifx_radar___matrix_8c.html#ac4c68ab177a59eef240b1fca85e94629" title="This function returns a real vector pointing to defined row of the given real matrix. " alt="" coords="478,57,619,98"/>
+<area shape="rect" id="node6" href="$ifx_radar___matrix_8c.html#a2eb6faa3cc8e5ee2b58a134db50a34c6" title="This function returns a complex vector pointing to defined row of the given complex matrix..." alt="" coords="478,122,619,163"/>
+<area shape="rect" id="node7" href="$ifx_radar___preprocessed_f_f_t_8c.html#ab36faeb04ebd14c0e13d97673569086f" title="It calculates 1D FFT for real input with some pre&#45;processing steps like mean removal and windowing..." alt="" coords="473,187,624,229"/>
+<area shape="rect" id="node14" href="$ifx_radar___math_8c.html#a06af5f810053e326c8c743528967c880" title="Computes element wise addition of two complex vectors and stores it in result vector. " alt="" coords="487,253,610,280"/>
+<area shape="rect" id="node16" href="$ifx_radar___math_8c.html#ab5e14146bfce2c56c9ce3ef543727704" title="ifx_math_abs_c" alt="" coords="488,304,609,331"/>
+<area shape="rect" id="node18" href="$ifx_radar___math_8c.html#a85e647597bd468f8030ef9b491c50add" title="Computes multiplication of a given complex array by a scalar. " alt="" coords="452,405,645,432"/>
+<area shape="rect" id="node20" href="$ifx_radar___math_8c.html#ab616b0b8955461766555d1b364f72d97" title="Computes absolute array from Complex input data. " alt="" coords="465,355,633,381"/>
+<area shape="rect" id="node21" href="$ifx_radar___math_8c.html#ad5858252b51e4e1656519f215ce31e85" title="Operate on ifx_Vector_R_t arrays, to clip values less than given threshold. " alt="" coords="473,457,625,498"/>
+<area shape="rect" id="node22" href="$ifx_radar___math_8c.html#acf4ebde7ec352a3df6c914f7f74ed8a0" title="Operate on real vector arrays, to convert from linear to dB scale. " alt="" coords="465,522,632,563"/>
+<area shape="rect" id="node8" href="$ifx_radar___math_8c.html#aed03537d9981f69e4ef39441edf8b8dc" title="Computes the arithmetic mean from a real valued array for a given array length. " alt="" coords="710,93,871,120"/>
+<area shape="rect" id="node9" href="$ifx_radar___math_8c.html#a7204cef6632f667b18bf01ede249d150" title="Removes a scalar value from each sample of a real valued array. " alt="" coords="693,144,888,171"/>
+<area shape="rect" id="node10" href="$ifx_radar___math_8c.html#a9651b3492de88dc80fb1796dff344295" title="Computes element wise multiplication between real input and output data. " alt="" coords="717,195,864,221"/>
+<area shape="rect" id="node11" href="$ifx_radar___f_f_t_8c.html#a0b29c13e155929a281e89a1a11b7716b" title="Performs FFT transform on a real/complex input (I/Q) and produces a complex output IQ FFT signal..." alt="" coords="743,245,839,272"/>
+<area shape="rect" id="node12" href="$ifx_radar___vector_8c.html#a60788d575ba480a8123147f45978cb28" title="Copies a real vector content into another real vector within the given boundaries. " alt="" coords="936,220,1068,247"/>
+<area shape="rect" id="node13" href="$ifx_radar___complex_8c.html#a9c98f41de6dab9f04f71ea8578647fdf" title="ifx_complex_conj" alt="" coords="937,271,1067,297"/>
+<area shape="rect" id="node15" href="$ifx_radar___complex_8c.html#a46041120c1e56eafb91b9c1f2cabf4b6" title="ifx_complex_add" alt="" coords="727,296,855,323"/>
+<area shape="rect" id="node17" href="$ifx_radar___complex_8c.html#ad31b3de5cdf1d6fd3c22cb996fe30660" title="ifx_complex_abs" alt="" coords="727,351,854,377"/>
+<area shape="rect" id="node19" href="$ifx_radar___complex_8c.html#ad64fbfdd8d942ba782a804ee29e997b6" title="ifx_complex_mul_scalar" alt="" coords="704,405,877,432"/>
+<area shape="rect" id="node23" href="$ifx_radar___math_8c.html#a8c5bbb8ca88e931cace0897079f21ece" title="Operate on real value vectors, to perform log base 10 from standard math. " alt="" coords="701,504,880,531"/>
+<area shape="rect" id="node24" href="$ifx_radar___math_8c.html#a27dc0ae38a266afc13fe7e59eed150de" title="Computes multiplication of a given real array by a scalar. " alt="" coords="695,555,886,581"/>
+</map>

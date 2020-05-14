@@ -1,0 +1,5 @@
+<map id="ifx_FFT_s" name="ifx_FFT_s">
+<area shape="rect" id="node2" href="$structifx___vector___r__t.html" title="Defines the structure for one dimensional Real data array used within API. " alt="" coords="5,95,116,121"/>
+<area shape="rect" id="node3" href="$structifx___vector___c__t.html" title="Defines the structure for one dimensional Complex data array used within API. " alt="" coords="157,95,269,121"/>
+<area shape="rect" id="node4" href="$structifx___complex__s.html" title="ifx_Complex_s" alt="" coords="156,5,269,32"/>
+</map>

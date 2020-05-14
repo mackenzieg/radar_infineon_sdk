@@ -1,0 +1,5 @@
+<map id="ifx_complex_div" name="ifx_complex_div">
+<area shape="rect" id="node2" href="$ifx_radar___complex_8c.html#a9c98f41de6dab9f04f71ea8578647fdf" title="ifx_complex_conj" alt="" coords="194,5,325,32"/>
+<area shape="rect" id="node3" href="$ifx_radar___complex_8c.html#ab1d93633c6e2bb262298ab798647cc5e" title="ifx_complex_mul" alt="" coords="195,56,323,83"/>
+<area shape="rect" id="node4" href="$ifx_radar___complex_8c.html#acdc8ff956400a9aaf02a44df835897e8" title="ifx_complex_div_scalar" alt="" coords="176,107,343,133"/>
+</map>

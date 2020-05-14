@@ -1,0 +1,15 @@
+<map id="ifx_complex_abs" name="ifx_complex_abs">
+<area shape="rect" id="node2" href="$ifx_radar___complex_8h.html#abe053442cca29b08f7cb0d0ca7f456bb" title="ifx_complex_to_polar" alt="" coords="186,49,342,76"/>
+<area shape="rect" id="node6" href="$ifx_radar___math_8h.html#ab616b0b8955461766555d1b364f72d97" title="Computes absolute array from Complex input data. " alt="" coords="180,169,348,196"/>
+<area shape="rect" id="node13" href="$ifx_radar___math_8h.html#ab5e14146bfce2c56c9ce3ef543727704" title="ifx_math_abs_c" alt="" coords="203,220,325,247"/>
+<area shape="rect" id="node14" href="$ifx_radar___range_spectrum_8c.html#afe5f4e8c263b82003a547599821645f8" title="get_index_of_highest\l_energy_c" alt="" coords="185,278,343,319"/>
+<area shape="rect" id="node3" href="$ifx_radar___complex_8h.html#aa94c102941759a3e0857cdfd65efc752" title="ifx_complex_ln" alt="" coords="441,5,555,32"/>
+<area shape="rect" id="node4" href="$ifx_radar___complex_8h.html#abc3507241521db5f47ac4a191d8dc628" title="ifx_complex_log10" alt="" coords="653,5,791,32"/>
+<area shape="rect" id="node5" href="$ifx_radar___math_8c.html#ab6d94b6271b0ee4461052f7de38f2f62" title="ifx_math_vector_log10_c" alt="" coords="844,5,1024,32"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="413,57,583,98"/>
+<area shape="rect" id="node8" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="413,122,583,163"/>
+<area shape="rect" id="node9" href="$ifx_radar___range_spectrum_8c.html#a31dc9cf3742386dec838d12d5f4bee58" title="ifx_range_spectrum\l_coherent_integration_run_r" alt="" coords="397,187,599,229"/>
+<area shape="rect" id="node11" href="$ifx_radar___range_spectrum_8c.html#aa36a40e3a2db15f2791c2f79e4393eae" title="ifx_range_spectrum\l_coherent_integration_run_c" alt="" coords="396,253,600,294"/>
+<area shape="rect" id="node10" href="$ifx_radar___range_spectrum_8h.html#afa1e8e01d5f6dc89eb4eba3539fe47c6" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="648,187,796,229"/>
+<area shape="rect" id="node12" href="$ifx_radar___range_spectrum_8h.html#adca08d082b23eadaadac34a9afdf42c1" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="648,282,796,323"/>
+</map>

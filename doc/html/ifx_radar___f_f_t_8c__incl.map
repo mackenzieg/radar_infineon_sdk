@@ -1,0 +1,8 @@
+<map id="libs/radar_sdk/src/ifxRadar_FFT.c" name="libs/radar_sdk/src/ifxRadar_FFT.c">
+<area shape="rect" id="node7" href="$ifx_radar___f_f_t_8h.html" title="This file defines the API to calculate fft signal and spectrum. " alt="" coords="491,95,601,121"/>
+<area shape="rect" id="node14" href="$ifx_radar___mem_8h.html" title="This file defines the API for memory allocation and deallocation as well as aligned allocation and al..." alt="" coords="625,95,749,121"/>
+<area shape="rect" id="node8" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="480,169,612,196"/>
+<area shape="rect" id="node10" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="483,319,609,345"/>
+<area shape="rect" id="node12" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="528,244,676,271"/>
+<area shape="rect" id="node13" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="701,244,823,271"/>
+</map>

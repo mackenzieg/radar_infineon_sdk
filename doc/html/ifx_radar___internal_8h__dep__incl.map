@@ -1,0 +1,6 @@
+<map id="libs/radar_sdk/inc/ifxRadar_Internal.h" name="libs/radar_sdk/inc/ifxRadar_Internal.h">
+<area shape="rect" id="node2" href="$ifx_radar___complex_8c.html" title="libs/radar_sdk/src\l/ifxRadar_Complex.c" alt="" coords="5,95,156,136"/>
+<area shape="rect" id="node3" href="$ifx_radar___math_8c.html" title="This file defines the API of mathematical operations such as mean calculation, scalar removal from an..." alt="" coords="181,95,314,136"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_spectrum_8c.html" title="This file implements the range spectrum API. " alt="" coords="339,95,537,136"/>
+<area shape="rect" id="node5" href="$ifx_radar___window_8c.html" title="This file defines the API to configure the coefficients of various Window Functions. " alt="" coords="561,95,702,136"/>
+</map>

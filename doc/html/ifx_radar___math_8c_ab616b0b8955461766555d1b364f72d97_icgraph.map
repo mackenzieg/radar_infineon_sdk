@@ -1,0 +1,8 @@
+<map id="ifx_math_vector_abs_c" name="ifx_math_vector_abs_c">
+<area shape="rect" id="node2" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="238,5,409,47"/>
+<area shape="rect" id="node3" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="238,71,409,112"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_spectrum_8c.html#a31dc9cf3742386dec838d12d5f4bee58" title="ifx_range_spectrum\l_coherent_integration_run_r" alt="" coords="222,136,425,177"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_spectrum_8c.html#aa36a40e3a2db15f2791c2f79e4393eae" title="ifx_range_spectrum\l_coherent_integration_run_c" alt="" coords="221,201,425,243"/>
+<area shape="rect" id="node5" href="$ifx_radar___range_spectrum_8h.html#afa1e8e01d5f6dc89eb4eba3539fe47c6" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="473,136,621,177"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_spectrum_8h.html#adca08d082b23eadaadac34a9afdf42c1" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="473,201,621,243"/>
+</map>

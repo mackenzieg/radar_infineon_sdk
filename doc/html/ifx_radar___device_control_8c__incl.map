@@ -1,0 +1,12 @@
+<map id="libs/radar_sdk/src/ifxRadar_DeviceControl.c" name="libs/radar_sdk/src/ifxRadar_DeviceControl.c">
+<area shape="rect" id="node13" href="$ifx_radar___device_control_8h.html" title="This file defines the API for simple radar device control operations. " alt="" coords="278,95,459,121"/>
+<area shape="rect" id="node15" href="$ifx_radar___frame_8h.html" title="This file defines the radar frame type. " alt="" coords="411,169,543,196"/>
+<area shape="rect" id="node21" href="$ifx_radar___mem_8h.html" title="This file defines the API for memory allocation and deallocation as well as aligned allocation and al..." alt="" coords="2025,95,2149,121"/>
+<area shape="rect" id="node22" href="$ifx_radar___log_8h.html" title="ifxRadar_Log.h" alt="" coords="790,169,905,196"/>
+<area shape="rect" id="node14" href="$ifx_radar___device_config_8h.html" title="This file defines the radar device config. " alt="" coords="213,244,388,271"/>
+<area shape="rect" id="node16" href="$ifx_radar___matrix_8h.html" title="This file defines the API to create and destroy matrices. " alt="" coords="463,244,594,271"/>
+<area shape="rect" id="node17" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="483,393,631,420"/>
+<area shape="rect" id="node18" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="463,468,589,495"/>
+<area shape="rect" id="node19" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="567,319,699,345"/>
+<area shape="rect" id="node20" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="706,393,829,420"/>
+</map>

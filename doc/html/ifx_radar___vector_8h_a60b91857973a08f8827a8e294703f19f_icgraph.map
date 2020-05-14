@@ -1,0 +1,9 @@
+<map id="ifx_vector_destroy_r" name="ifx_vector_destroy_r">
+<area shape="rect" id="node2" href="$ifx_radar___f_f_t_8h.html#a6ee78e1537e689c7506b9a4d69330ab8" title="Performs destruction of FFT handle (object) to clear internal states used for a particular FFT size..." alt="" coords="208,21,319,47"/>
+<area shape="rect" id="node3" href="$ifx_radar___preprocessed_f_f_t_8h.html#ae3d45d323a428337c74aff1f3bbb0ae4" title="This destroys handle (object) for 1D FFT chain along with internal memories. " alt="" coords="371,39,521,80"/>
+<area shape="rect" id="node8" href="$ifx_radar___m_t_i_8h.html#afc95b8bd528f27878195c1ec6c535f91" title="Destroys the MTI filter handle. " alt="" coords="204,122,323,149"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a29eb48bc58fb074aed8a9aaeb447b22e" title="Performs destruction of range doppler spectrum handle (object) to clear internal states and memories ..." alt="" coords="569,5,740,47"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_spectrum_8h.html#a3f13af7e0d65ce3371b3adf48c0c0ca8" title="Performs destruction of range spectrum handle (object) to clear internal states and memories used for..." alt="" coords="581,71,729,112"/>
+<area shape="rect" id="node5" href="$ifx_radar___range_doppler_map_8h.html#a01b00bbc2d149c97fd0c4768673b4625" title="Aim of this method is to create a range doppler spectrum handle (object), based on the input paramete..." alt="" coords="788,5,959,47"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_spectrum_8h.html#a0f0b67190fc38ef13a2380e34498cc13" title="Aim of this method is to create a range spectrum handle (object), based on the input parameters e..." alt="" coords="799,71,947,112"/>
+</map>

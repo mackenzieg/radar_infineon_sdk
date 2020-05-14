@@ -1,0 +1,6 @@
+<map id="ifx_mti_run" name="ifx_mti_run">
+<area shape="rect" id="node2" href="$ifx_radar___math_8c.html#a2c0f1d2ce3cb055b3c8f152de8f28c1b" title="Computes element wise real vector subtraction result = v1 &#45; v2. " alt="" coords="166,5,315,32"/>
+<area shape="rect" id="node3" href="$ifx_radar___math_8c.html#ac5b8e532e3979e24419e97259feca09b" title="Computes absolute array (modulus) from Real input data. " alt="" coords="157,56,324,83"/>
+<area shape="rect" id="node4" href="$ifx_radar___math_8c.html#a27dc0ae38a266afc13fe7e59eed150de" title="Computes multiplication of a given real array by a scalar. " alt="" coords="145,107,336,133"/>
+<area shape="rect" id="node5" href="$ifx_radar___math_8c.html#a7073f6ce31b3dfc96f96fe4f81a70867" title="Computes element wise addition of two real vectors and stores it in result vector. " alt="" coords="181,157,301,184"/>
+</map>

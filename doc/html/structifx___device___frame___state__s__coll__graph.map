@@ -1,0 +1,4 @@
+<map id="ifx_Device_Frame_State_s" name="ifx_Device_Frame_State_s">
+<area shape="rect" id="node2" href="$structifx___frame__t.html" title="This structure holds a complete frame of time domain data. " alt="" coords="53,95,147,121"/>
+<area shape="rect" id="node3" href="$structifx___matrix___r__t.html" title="Defines the structure for one dimensional floating point data array used within API. " alt="" coords="45,5,155,32"/>
+</map>

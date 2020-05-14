@@ -1,0 +1,7 @@
+<map id="ifx_fft_run_c" name="ifx_fft_run_c">
+<area shape="rect" id="node2" href="$ifx_radar___preprocessed_f_f_t_8h.html#ae90f9d0b107192573ce81fab38c69952" title="It calculates 1D FFT for complex input with some pre&#45;processing steps like mean removal and windowing..." alt="" coords="152,71,303,112"/>
+<area shape="rect" id="node3" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="367,5,538,47"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="367,71,538,112"/>
+<area shape="rect" id="node5" href="$ifx_radar___range_spectrum_8c.html#aa36a40e3a2db15f2791c2f79e4393eae" title="ifx_range_spectrum\l_coherent_integration_run_c" alt="" coords="351,136,555,177"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_spectrum_8h.html#adca08d082b23eadaadac34a9afdf42c1" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="603,136,751,177"/>
+</map>

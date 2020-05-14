@@ -1,0 +1,9 @@
+<map id="ifx_device_create_frame" name="ifx_device_create_frame">
+<area shape="rect" id="node2" href="$ifx_radar___mem_8c.html#af6ddd82d94ade65fc5e7bd3cd3618c8a" title="Allocates memory for an array of defined number of elements with specified element size and initializ..." alt="" coords="243,5,363,32"/>
+<area shape="rect" id="node3" href="$ifx_radar___matrix_8c.html#a1bc71c29e90b9f5a1a68dff875d5c98a" title="Allocates memory for a real matrix with a specified number of rows and columns and initializes it to ..." alt="" coords="231,56,375,83"/>
+<area shape="rect" id="node5" href="$ifx_radar___frame_8c.html#ab86285552b075852dcb9fe7d87211188" title="This function frees the memory allocated for the frame structure. " alt="" coords="233,107,372,149"/>
+<area shape="rect" id="node4" href="$ifx_radar___mem_8c.html#a7e7a09693e3e47510a771b356f25d29e" title="Allocates memory of defined size with specified alignment. " alt="" coords="423,56,589,83"/>
+<area shape="rect" id="node6" href="$ifx_radar___matrix_8c.html#a65f5a2b643a53c47a561a851cbc52c96" title="Frees memory for a real matrix defined by ifx_matrix_create_r and sets the length of the matrix to ze..." alt="" coords="431,111,581,137"/>
+<area shape="rect" id="node8" href="$ifx_radar___mem_8c.html#a97222be1e319035121a5694f629de8d9" title="Deallocates the memory which has been allocated by ifx_mem_alloc or ifx_mem_calloc. " alt="" coords="451,161,561,188"/>
+<area shape="rect" id="node7" href="$ifx_radar___mem_8c.html#a3ff07fb6789dadf1d89dc68bae5d8697" title="Deallocates the memory which has been allocated by ifx_mem_aligned_alloc. " alt="" coords="637,111,800,137"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="ifx_complex_sub" name="ifx_complex_sub">
+<area shape="rect" id="node2" href="$ifx_radar___math_8h.html#a9846ee9819da0f72409c95ea98ad8fe1" title="Removes a scalar value from each sample of a complex valued array. " alt="" coords="180,78,376,105"/>
+<area shape="rect" id="node8" href="$ifx_radar___math_8h.html#a0ecabd50df96eac07f1e04becfa5ab0f" title="Computes element wise complex vector subtraction result = v1 &#45; v2. " alt="" coords="203,129,353,155"/>
+<area shape="rect" id="node9" href="$ifx_radar___matrix_8h.html#aaac8193b3656be7f48b0e43c2eb80c97" title="Subtracts two complex matrices and saves the result of subtraction into given output matrix..." alt="" coords="199,179,357,206"/>
+<area shape="rect" id="node3" href="$ifx_radar___preprocessed_f_f_t_8h.html#ae90f9d0b107192573ce81fab38c69952" title="It calculates 1D FFT for complex input with some pre&#45;processing steps like mean removal and windowing..." alt="" coords="424,71,575,112"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="639,5,810,47"/>
+<area shape="rect" id="node5" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="639,71,810,112"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_spectrum_8c.html#aa36a40e3a2db15f2791c2f79e4393eae" title="ifx_range_spectrum\l_coherent_integration_run_c" alt="" coords="623,136,827,177"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_spectrum_8h.html#adca08d082b23eadaadac34a9afdf42c1" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="875,136,1023,177"/>
+</map>

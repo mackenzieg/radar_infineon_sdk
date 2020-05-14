@@ -1,0 +1,9 @@
+<map id="libs/radar_sdk/inc/ifxRadar_PreprocessedFFT.h" name="libs/radar_sdk/inc/ifxRadar_PreprocessedFFT.h">
+<area shape="rect" id="node2" href="$ifx_radar___preprocessed_f_f_t_8c.html" title="This file implements the PreprocessedFFT module API. " alt="" coords="5,95,207,136"/>
+<area shape="rect" id="node3" href="$ifx_radar___range_spectrum_8c.html" title="This file implements the range spectrum API. " alt="" coords="173,184,372,225"/>
+<area shape="rect" id="node4" href="$ifx_radar_s_d_k_8h.html" title="Master header file for Radar SDK. " alt="" coords="424,184,556,225"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_doppler_map_8h.html" title="Range doppler map is a 2D FFT transform on time domain data and the output of this module is 2D matri..." alt="" coords="554,95,767,136"/>
+<area shape="rect" id="node8" href="$ifx_radar___range_spectrum_8h.html" title="Range spectrum is a 1D FFT transform of time domain data over chirps (also known as Fast time)..." alt="" coords="281,95,480,136"/>
+<area shape="rect" id="node5" href="$ifx_radar___version_8c.html" title="Version File. " alt="" coords="419,273,561,315"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_doppler_map_8c.html" title="This file implements the API to calculate Range Doppler Map. " alt="" coords="580,184,792,225"/>
+</map>

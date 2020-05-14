@@ -1,0 +1,8 @@
+<map id="libs/radar_sdk/src/ifxRadar_Window.c" name="libs/radar_sdk/src/ifxRadar_Window.c">
+<area shape="rect" id="node2" href="$ifx_radar___window_8h.html" title="This file defines the API to configure the coefficients of various Window Functions. " alt="" coords="198,95,337,121"/>
+<area shape="rect" id="node9" href="$ifx_radar___internal_8h.html" title="This file defines standard math.h functions as Macros to use float or double precision. " alt="" coords="409,95,549,121"/>
+<area shape="rect" id="node3" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="155,169,287,196"/>
+<area shape="rect" id="node5" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="157,319,284,345"/>
+<area shape="rect" id="node7" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="147,244,295,271"/>
+<area shape="rect" id="node8" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="319,244,442,271"/>
+</map>

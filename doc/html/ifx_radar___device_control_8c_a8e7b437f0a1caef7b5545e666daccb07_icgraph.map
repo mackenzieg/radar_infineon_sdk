@@ -1,0 +1,4 @@
+<map id="search_endpoints" name="search_endpoints">
+<area shape="rect" id="node2" href="$ifx_radar___device_control_8c.html#a44e7a03c462c3661a8393f8634dee435" title="connect_to_device" alt="" coords="188,5,329,32"/>
+<area shape="rect" id="node3" href="$ifx_radar___device_control_8h.html#a0306e7baec735f8760cc9f590d35159a" title="This function connects to a radar sensor device and starts acquisition of time domain data..." alt="" coords="377,5,509,32"/>
+</map>

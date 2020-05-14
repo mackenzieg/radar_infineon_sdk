@@ -1,0 +1,13 @@
+<map id="ifx_mem_aligned_alloc" name="ifx_mem_aligned_alloc">
+<area shape="rect" id="node2" href="$ifx_radar___matrix_8h.html#a1bc71c29e90b9f5a1a68dff875d5c98a" title="Allocates memory for a real matrix with a specified number of rows and columns and initializes it to ..." alt="" coords="221,13,365,39"/>
+<area shape="rect" id="node5" href="$ifx_radar___matrix_8h.html#ae363402ab65858630afa21602ee2498c" title="Allocates memory for a complex matrix with a specified number of rows and columns and initializes it ..." alt="" coords="654,178,801,205"/>
+<area shape="rect" id="node8" href="$ifx_radar___vector_8h.html#a548be520d8c6c8d37e2abe43d0adf6c4" title="Allocates memory for a real data array for a specified number of elements and initializes it to zero..." alt="" coords="221,139,364,166"/>
+<area shape="rect" id="node12" href="$ifx_radar___vector_8h.html#a758cd067a3fa1fab7e6134871d5efd0f" title="Allocates memory for a complex data array for a specified number of elements and initializes it to ze..." alt="" coords="220,266,365,293"/>
+<area shape="rect" id="node3" href="$ifx_radar___frame_8h.html#a26abe6bb17201ae8bc68ee24985332ae" title="This function creates a frame structure for time domain data acquisition. " alt="" coords="413,13,591,39"/>
+<area shape="rect" id="node4" href="$ifx_radar___device_control_8h.html#ae23be33710d02629f456c2e410df5db5" title="This function creates a frame structure for time domain data acquisition using information from a ifx..." alt="" coords="639,5,816,47"/>
+<area shape="rect" id="node6" href="$ifx_radar___range_doppler_map_8h.html#a01b00bbc2d149c97fd0c4768673b4625" title="Aim of this method is to create a range doppler spectrum handle (object), based on the input paramete..." alt="" coords="864,200,1035,241"/>
+<area shape="rect" id="node7" href="$ifx_radar___range_spectrum_8h.html#a0f0b67190fc38ef13a2380e34498cc13" title="Aim of this method is to create a range spectrum handle (object), based on the input parameters e..." alt="" coords="875,265,1023,307"/>
+<area shape="rect" id="node9" href="$ifx_radar___f_f_t_8h.html#a610083f0d8201c9de1c0fb683ac98fd9" title="Aim of this method is to create a FFT handle(object), based on the input parameters e..." alt="" coords="450,215,554,242"/>
+<area shape="rect" id="node10" href="$ifx_radar___preprocessed_f_f_t_8h.html#a66301404c5b29a7c8a64439aeea353c6" title="This creates a handle (object) for 1D FFT chain, containing all required settings and internal memori..." alt="" coords="652,229,803,271"/>
+<area shape="rect" id="node11" href="$ifx_radar___m_t_i_8h.html#a8358788d2f8dda83e2a8286cedc87f39" title="This function instantiates a handle to an MTI filter structure ifx_MTI_s which contains information r..." alt="" coords="446,114,558,141"/>
+</map>

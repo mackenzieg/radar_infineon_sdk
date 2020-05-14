@@ -1,0 +1,29 @@
+<map id="libs/radar_sdk/inc/ifxRadar_Complex.h" name="libs/radar_sdk/inc/ifxRadar_Complex.h">
+<area shape="rect" id="node2" href="$ifx_radar___complex_8c.html" title="libs/radar_sdk/src\l/ifxRadar_Complex.c" alt="" coords="839,95,990,136"/>
+<area shape="rect" id="node3" href="$ifx_radar___matrix_8h.html" title="This file defines the API to create and destroy matrices. " alt="" coords="357,184,491,225"/>
+<area shape="rect" id="node15" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="1065,95,1201,136"/>
+<area shape="rect" id="node22" href="$ifx_radar___math_8h.html" title="This file defines the API of mathematical operations such as mean calculation, scalar removal from an..." alt="" coords="2007,184,2139,225"/>
+<area shape="rect" id="node4" href="$ifx_radar___matrix_8c.html" title="This file defines the API to create and destroy matrices. " alt="" coords="279,273,414,315"/>
+<area shape="rect" id="node5" href="$ifx_radar___frame_8h.html" title="This file defines the radar frame type. " alt="" coords="107,273,243,315"/>
+<area shape="rect" id="node9" href="$ifx_radar_s_d_k_8h.html" title="Master header file for Radar SDK. " alt="" coords="935,452,1067,493"/>
+<area shape="rect" id="node11" href="$ifx_radar___range_doppler_map_8h.html" title="Range doppler map is a 2D FFT transform on time domain data and the output of this module is 2D matri..." alt="" coords="1560,363,1773,404"/>
+<area shape="rect" id="node13" href="$ifx_radar___range_spectrum_8h.html" title="Range spectrum is a 1D FFT transform of time domain data over chirps (also known as Fast time)..." alt="" coords="1305,363,1503,404"/>
+<area shape="rect" id="node6" href="$ifx_radar___device_control_8c.html" title="Creation of memory for frame and connection to the device via commlib. " alt="" coords="5,452,189,493"/>
+<area shape="rect" id="node7" href="$ifx_radar___frame_8c.html" title="This file defines the API to create and destroy frames. " alt="" coords="279,363,414,404"/>
+<area shape="rect" id="node8" href="$ifx_radar___device_control_8h.html" title="This file defines the API for simple radar device control operations. " alt="" coords="70,363,255,404"/>
+<area shape="rect" id="node10" href="$ifx_radar___version_8c.html" title="Version File. " alt="" coords="930,541,1073,583"/>
+<area shape="rect" id="node12" href="$ifx_radar___range_doppler_map_8c.html" title="This file implements the API to calculate Range Doppler Map. " alt="" coords="2289,452,2501,493"/>
+<area shape="rect" id="node14" href="$ifx_radar___range_spectrum_8c.html" title="This file implements the range spectrum API. " alt="" coords="2039,452,2238,493"/>
+<area shape="rect" id="node16" href="$ifx_radar___vector_8c.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="1229,184,1363,225"/>
+<area shape="rect" id="node17" href="$ifx_radar___f_f_t_8h.html" title="This file defines the API to calculate fft signal and spectrum. " alt="" coords="1407,184,1539,225"/>
+<area shape="rect" id="node20" href="$ifx_radar___preprocessed_f_f_t_8h.html" title="Pre&#45;processed FFT is 1D FFT along with pre&#45;processing like mean removal and windowing. " alt="" coords="1873,273,2076,315"/>
+<area shape="rect" id="node24" href="$ifx_radar___m_t_i_8h.html" title="This file defines the API to perform MTI filter. " alt="" coords="834,184,966,225"/>
+<area shape="rect" id="node25" href="$ifx_radar___peak_search_8h.html" title="This file defines the API for peak&#45;search module. " alt="" coords="638,184,810,225"/>
+<area shape="rect" id="node27" href="$ifx_radar___window_8h.html" title="This file defines the API to configure the coefficients of various Window Functions. " alt="" coords="1062,184,1205,225"/>
+<area shape="rect" id="node18" href="$ifx_radar___f_f_t_8c.html" title="This file defines the API to calculate FFT complex signal. " alt="" coords="1564,273,1697,315"/>
+<area shape="rect" id="node19" href="$ifx_radar___m_t_i_8c.html" title="This file defines the API for MTI filter. " alt="" coords="1407,273,1540,315"/>
+<area shape="rect" id="node21" href="$ifx_radar___preprocessed_f_f_t_8c.html" title="This file implements the PreprocessedFFT module API. " alt="" coords="1849,363,2050,404"/>
+<area shape="rect" id="node23" href="$ifx_radar___math_8c.html" title="This file defines the API of mathematical operations such as mean calculation, scalar removal from an..." alt="" coords="2201,273,2335,315"/>
+<area shape="rect" id="node26" href="$ifx_radar___peak_search_8c.html" title="This file defines the API for preprocessing. " alt="" coords="692,273,863,315"/>
+<area shape="rect" id="node28" href="$ifx_radar___window_8c.html" title="This file defines the API to configure the coefficients of various Window Functions. " alt="" coords="1039,273,1180,315"/>
+</map>

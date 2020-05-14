@@ -1,0 +1,5 @@
+<map id="ifx_device_destroy_frame" name="ifx_device_destroy_frame">
+<area shape="rect" id="node2" href="$ifx_radar___matrix_8c.html#a65f5a2b643a53c47a561a851cbc52c96" title="Frees memory for a real matrix defined by ifx_matrix_create_r and sets the length of the matrix to ze..." alt="" coords="192,5,343,32"/>
+<area shape="rect" id="node4" href="$ifx_radar___mem_8c.html#a97222be1e319035121a5694f629de8d9" title="Deallocates the memory which has been allocated by ifx_mem_alloc or ifx_mem_calloc. " alt="" coords="213,56,322,83"/>
+<area shape="rect" id="node3" href="$ifx_radar___mem_8c.html#a3ff07fb6789dadf1d89dc68bae5d8697" title="Deallocates the memory which has been allocated by ifx_mem_aligned_alloc. " alt="" coords="391,5,553,32"/>
+</map>

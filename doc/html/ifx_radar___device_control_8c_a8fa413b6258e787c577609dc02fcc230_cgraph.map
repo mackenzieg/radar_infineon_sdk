@@ -1,0 +1,7 @@
+<map id="ifx_device_get_next_frame" name="ifx_device_get_next_frame">
+<area shape="rect" id="node2" href="$ifx_radar___device_control_8c.html#a6bdd64b32171984401ae37207ec6d281" title="ifx_device_trigger\l_sequence" alt="" coords="211,5,344,47"/>
+<area shape="rect" id="node4" href="$ifx_radar___device_control_8c.html#ae50d6320f3003e375bfe474b5f2df15c" title="bgt60trxx_slice_data\l_callback" alt="" coords="200,136,355,177"/>
+<area shape="rect" id="node6" href="$ifx_radar___device_control_8c.html#ab94f5254e1593532e7362d0d34a80284" title="ifx_device_stop_and\l_reset" alt="" coords="202,71,353,112"/>
+<area shape="rect" id="node3" href="$ifx_radar___device_control_8c.html#a465258f607b9c3a1e6893e8b5936bb8d" title="translate_error_code" alt="" coords="417,46,571,73"/>
+<area shape="rect" id="node5" href="$ifx_radar___matrix_8c.html#a9edb49a0e2ade4bb6ee8b9c483834dff" title="Sets a user defined value at a given row,column location in a real matrix. " alt="" coords="403,143,585,170"/>
+</map>

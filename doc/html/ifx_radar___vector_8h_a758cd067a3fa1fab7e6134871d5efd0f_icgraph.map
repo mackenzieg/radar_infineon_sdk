@@ -1,0 +1,6 @@
+<map id="ifx_vector_create_c" name="ifx_vector_create_c">
+<area shape="rect" id="node2" href="$ifx_radar___f_f_t_8h.html#a610083f0d8201c9de1c0fb683ac98fd9" title="Aim of this method is to create a FFT handle(object), based on the input parameters e..." alt="" coords="199,86,303,113"/>
+<area shape="rect" id="node3" href="$ifx_radar___preprocessed_f_f_t_8h.html#a66301404c5b29a7c8a64439aeea353c6" title="This creates a handle (object) for 1D FFT chain, containing all required settings and internal memori..." alt="" coords="351,68,501,109"/>
+<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a01b00bbc2d149c97fd0c4768673b4625" title="Aim of this method is to create a range doppler spectrum handle (object), based on the input paramete..." alt="" coords="549,5,720,47"/>
+<area shape="rect" id="node5" href="$ifx_radar___range_spectrum_8h.html#a0f0b67190fc38ef13a2380e34498cc13" title="Aim of this method is to create a range spectrum handle (object), based on the input parameters e..." alt="" coords="561,99,709,140"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="ifx_preprocessed_fft_create" name="ifx_preprocessed_fft_create">
+<area shape="rect" id="node2" href="$ifx_radar___mem_8c.html#af6ddd82d94ade65fc5e7bd3cd3618c8a" title="Allocates memory for an array of defined number of elements with specified element size and initializ..." alt="" coords="492,5,612,32"/>
+<area shape="rect" id="node3" href="$ifx_radar___vector_8c.html#a548be520d8c6c8d37e2abe43d0adf6c4" title="Allocates memory for a real data array for a specified number of elements and initializes it to zero..." alt="" coords="481,107,623,133"/>
+<area shape="rect" id="node5" href="$ifx_radar___vector_8c.html#a758cd067a3fa1fab7e6134871d5efd0f" title="Allocates memory for a complex data array for a specified number of elements and initializes it to ze..." alt="" coords="479,56,625,83"/>
+<area shape="rect" id="node6" href="$ifx_radar___f_f_t_8c.html#a610083f0d8201c9de1c0fb683ac98fd9" title="Aim of this method is to create a FFT handle(object), based on the input parameters e..." alt="" coords="247,107,351,133"/>
+<area shape="rect" id="node7" href="$ifx_radar___window_8c.html#a086cede82256b3d60b2ab7160607cc69" title="This function generates the coefficients of a user selected window for a given length. " alt="" coords="242,208,357,235"/>
+<area shape="rect" id="node13" href="$ifx_radar___math_8c.html#af3f529ecfbb3ce7642d678f3f0d014e7" title="ifx_math_vector_sum_r" alt="" coords="214,259,385,285"/>
+<area shape="rect" id="node14" href="$ifx_radar___math_8c.html#a27dc0ae38a266afc13fe7e59eed150de" title="Computes multiplication of a given real array by a scalar. " alt="" coords="204,309,395,336"/>
+<area shape="rect" id="node4" href="$ifx_radar___mem_8c.html#a7e7a09693e3e47510a771b356f25d29e" title="Allocates memory of defined size with specified alignment. " alt="" coords="709,81,876,108"/>
+<area shape="rect" id="node8" href="$ifx_radar___window_8c.html#a95358152be0501c54011a910a789fa8b" title="This function generates the coefficients of a Hamming window for a given length. " alt="" coords="461,208,643,235"/>
+<area shape="rect" id="node9" href="$ifx_radar___window_8c.html#a79a686fe92b4630a286714dc2ce5e0d2" title="This function generates the coefficients of a Hanning window for a given length. " alt="" coords="466,259,638,285"/>
+<area shape="rect" id="node10" href="$ifx_radar___window_8c.html#ae193c94330798ff958c38bcb7f6f1f6c" title="This function generates the coefficients of a Blackman window for a given length. ..." alt="" coords="443,309,661,336"/>
+<area shape="rect" id="node11" href="$ifx_radar___window_8c.html#adf283e0c77fd5698dd8d95df9db6adc6" title="This function generates the coefficients of a Chebyshev window for a given length. " alt="" coords="457,157,647,184"/>
+<area shape="rect" id="node12" href="$ifx_radar___window_8c.html#af3ab590ed7717a0d6451694f91693c68" title="Computes Chebyshev polynomial of the first kind. " alt="" coords="746,157,839,184"/>
+</map>

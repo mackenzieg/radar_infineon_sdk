@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['cabs',['CABS',['../ifx_radar___internal_8h.html#ac6945cb7d2db8f89f9eac901caa7d67a',1,'ifxRadar_Internal.h']]],
+  ['calculate_5fslice_5fsize',['calculate_slice_size',['../ifx_radar___device_control_8c.html#a4f48deefa3c7905307816304f27c4f43',1,'ifxRadar_DeviceControl.c']]],
+  ['center_5ffrequency_5fkhz',['center_frequency_khz',['../structifx___range___doppler___map___config__t.html#a761e2c3209f2b192fb62f2e1041a1c3f',1,'ifx_Range_Doppler_Map_Config_t']]],
+  ['cheby_5fpoly',['cheby_poly',['../ifx_radar___window_8c.html#af3ab590ed7717a0d6451694f91693c68',1,'ifxRadar_Window.c']]],
+  ['check_5fcall_5fdestroy_5freturn',['CHECK_CALL_DESTROY_RETURN',['../ifx_radar___f_f_t_8c.html#aedc29842ab9feeef525b0eb2b7877a69',1,'CHECK_CALL_DESTROY_RETURN():&#160;ifxRadar_FFT.c'],['../ifx_radar___preprocessed_f_f_t_8c.html#aedc29842ab9feeef525b0eb2b7877a69',1,'CHECK_CALL_DESTROY_RETURN():&#160;ifxRadar_PreprocessedFFT.c'],['../ifx_radar___range_doppler_map_8c.html#aedc29842ab9feeef525b0eb2b7877a69',1,'CHECK_CALL_DESTROY_RETURN():&#160;ifxRadar_RangeDopplerMap.c'],['../ifx_radar___range_spectrum_8c.html#aedc29842ab9feeef525b0eb2b7877a69',1,'CHECK_CALL_DESTROY_RETURN():&#160;ifxRadar_RangeSpectrum.c']]],
+  ['check_5fcomm_5ferr_5fcode',['CHECK_COMM_ERR_CODE',['../ifx_radar___device_control_8c.html#ad30adefdcac60d74a21d99d0a9f66360',1,'ifxRadar_DeviceControl.c']]],
+  ['chirp_5fbandwidth_5fkhz',['chirp_bandwidth_khz',['../structifx___range___doppler___map___config__t.html#a9241c76520dbf2259592f47696f41713',1,'ifx_Range_Doppler_Map_Config_t::chirp_bandwidth_khz()'],['../structifx___range___spectrum___config__t.html#a50bee4ff851d220c61ddac9cad5982ea',1,'ifx_Range_Spectrum_Config_t::chirp_bandwidth_khz()']]],
+  ['chirp_5fidx',['chirp_idx',['../structifx___device___frame___state__s.html#a892c2a14166d7a20f29c6775cd359c79',1,'ifx_Device_Frame_State_s']]],
+  ['chirp_5frepetition_5ftime_5fsec',['chirp_repetition_time_sec',['../structifx___range___doppler___map___config__t.html#a72d1b9f9b6b0a398f7dba2b8b197ac47',1,'ifx_Range_Doppler_Map_Config_t']]],
+  ['chirp_5fto_5fchirp_5ftime_5f100ps',['chirp_to_chirp_time_100ps',['../structifx___device___config__t.html#a70e3c1e1c9b0f1545240e3594990194b',1,'ifx_Device_Config_t']]],
+  ['cimag',['CIMAG',['../ifx_radar___internal_8h.html#a4b305e7c9cd60987bfcd8d953c19687c',1,'ifxRadar_Internal.h']]],
+  ['clipping_5fvalue',['CLIPPING_VALUE',['../ifx_radar___range_doppler_map_8c.html#a550b1544733c642e2e37edb3f35fb805',1,'CLIPPING_VALUE():&#160;ifxRadar_RangeDopplerMap.c'],['../ifx_radar___range_spectrum_8c.html#a550b1544733c642e2e37edb3f35fb805',1,'CLIPPING_VALUE():&#160;ifxRadar_RangeSpectrum.c']]],
+  ['columns',['columns',['../structifx___matrix___r__t.html#a56664eb80ec4f50e9fd0419e2eb335ca',1,'ifx_Matrix_R_t::columns()'],['../structifx___matrix___c__t.html#a56664eb80ec4f50e9fd0419e2eb335ca',1,'ifx_Matrix_C_t::columns()']]],
+  ['connect_5fto_5fdevice',['connect_to_device',['../ifx_radar___device_control_8c.html#a44e7a03c462c3661a8393f8634dee435',1,'ifxRadar_DeviceControl.c']]],
+  ['cos',['COS',['../ifx_radar___internal_8h.html#af1af2de870caad797b91210f0fc6fe78',1,'ifxRadar_Internal.h']]],
+  ['cosh',['COSH',['../ifx_radar___internal_8h.html#a06122bdfd04092936fac23f4de42d468',1,'ifxRadar_Internal.h']]],
+  ['count_5fantennas',['count_antennas',['../ifx_radar___device_control_8c.html#a2b9401c56a75b3cb06586aedee700cd4',1,'ifxRadar_DeviceControl.c']]],
+  ['creal',['CREAL',['../ifx_radar___internal_8h.html#aadc886cc580025d6849ac82b0a8f7cf5',1,'ifxRadar_Internal.h']]]
+];
