@@ -11,8 +11,7 @@ execute the following steps:
    environment and checks for required SW packages which are needed for compiling and/or running the
    SDK. The installation can take from 30 to 120 seconds. 
 4. Start directly with: "scons ." and all the examples in the example folder are built.
-5. Go to example/<name_example>, and run "./build/<name_example>" to start a specific example
-   application.
+5. Go to example/<name_example>, and run "./build/<name_example>" to start the presence detection app
 6. To run presence detection application directly, skip points 3-5 and run the command 
    "./bootstrap.sh install".  It would install and run the presence detection application as a service
    in the background. 
