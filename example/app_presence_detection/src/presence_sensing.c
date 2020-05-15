@@ -573,6 +573,8 @@ ifx_Error_t ifx_presencesensing_get_result(ifx_PresenceSensing_Handle_t* handle,
 
     result->cur_presence_state = handle->state;
     result->num_targets = handle->num_targets;
+	fprintf(stderr, "num_targets: %d\n", result->num_targets);
+	fprintf(stderr, "presence: %d\n", !result->cur_presence_state);
     return ret;
 }
 
