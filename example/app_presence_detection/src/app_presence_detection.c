@@ -162,15 +162,15 @@ static void check_env()
         return NULL;
     }
 #else // Raspberry Pi
-    // #include <wiringPi.h>
+    #include <wiringPi.h>
 
-    // #define LED_PIN 25 //0
+    #define LED_PIN 25 //0
 
     static void* play_hello(void * h)
     {
         chdir(abs_conf_path);
         system("aplay -q Hello_fast.wav &");
-        // digitalWrite(LED_PIN, 0);
+        digitalWrite(LED_PIN, 0);
         return NULL;
     }
 
@@ -178,7 +178,7 @@ static void check_env()
     {
         chdir(abs_conf_path);
         system("aplay -q Goodbye_fast.wav &");
-        // digitalWrite(LED_PIN, 1);
+        digitalWrite(LED_PIN, 1);
         return NULL;
     }
 #endif
@@ -495,7 +495,7 @@ void signal_handler(int sig)
     {
 #ifdef _WIN32
 #else
-        // digitalWrite(LED_PIN, 1);
+        digitalWrite(LED_PIN, 1);
 #endif
     }
     g_is_running = false;
@@ -546,20 +546,22 @@ int main(int argc, char** argv)
     }
 
     if(opt.data_file_path == NULL) {
-        if(ifx_device_create(&ps_config.device_config, &g_device_handle))
+		ifx_Error_t temp = ifx_device_create(&ps_config.device_config, &g_device_handle);
+        if(temp)
         {
             fprintf (stderr, "failed init device!\n");
+			fprintf (stderr, "Error code: %c\n", temp);
             return EXIT_FAILURE;
         }
     }
 
 #ifdef _WIN32
 #else
-    // if(wiringPiSetup() == -1)
-    //     return EXIT_FAILURE;
+    if(wiringPiSetup() == -1)
+        return EXIT_FAILURE;
 
-    // pinMode(LED_PIN, OUTPUT);
-    // digitalWrite(LED_PIN, 1);
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, 1);
 #endif
 
     ifx_PresenceSensing_Handle_t* presencesensing;
