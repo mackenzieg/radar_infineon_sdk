@@ -9,7 +9,8 @@ else:
     compiler_tool_chain = 'default'
 env = Environment(tools=[compiler_tool_chain, 'textfile'], ENV=os.environ)
 
-SRCS = Glob('src/*.c*')
+SRCS = Glob('src/*.c')
+SRCS = SRCS + Glob('src/*.cpp')
 
 env.MergeFlags('-pthread -lpthread')
 

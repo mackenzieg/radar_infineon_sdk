@@ -32,3 +32,7 @@
 *.app
 
 .scons*
+*~
+~*
+*.backup
+*.swp
