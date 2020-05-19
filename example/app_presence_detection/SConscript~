@@ -13,7 +13,7 @@ c_srcs = Glob('src/*.c')
 
 env.MergeFlags('-pthread -lpthread')
 
-libs=['libradar_sdk.a']
+libs=['libradar_sdk']
 if not sys.platform.startswith('linux'):
     env.Append(LINKFLAGS='-static')
     libs.append('winmm')
