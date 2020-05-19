@@ -1,6 +1,0 @@
-<map id="translate_error_code" name="translate_error_code">
-<area shape="rect" id="node2" href="$ifx_radar___device_control_8h.html#a0306e7baec735f8760cc9f590d35159a" title="This function connects to a radar sensor device and starts acquisition of time domain data..." alt="" coords="217,5,349,32"/>
-<area shape="rect" id="node3" href="$ifx_radar___device_control_8c.html#a6bdd64b32171984401ae37207ec6d281" title="ifx_device_trigger\l_sequence" alt="" coords="217,57,350,98"/>
-<area shape="rect" id="node5" href="$ifx_radar___device_control_8c.html#ab94f5254e1593532e7362d0d34a80284" title="ifx_device_stop_and\l_reset" alt="" coords="208,122,359,163"/>
-<area shape="rect" id="node4" href="$ifx_radar___device_control_8h.html#a8fa413b6258e787c577609dc02fcc230" title="This function retrieves the next frame of time domain data from a radar device. " alt="" coords="407,90,553,131"/>
-</map>

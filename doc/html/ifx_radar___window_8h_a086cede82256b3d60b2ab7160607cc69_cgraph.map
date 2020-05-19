@@ -1,7 +1,0 @@
-<map id="ifx_window_init" name="ifx_window_init">
-<area shape="rect" id="node2" href="$ifx_radar___window_8c.html#a95358152be0501c54011a910a789fa8b" title="This function generates the coefficients of a Hamming window for a given length. " alt="" coords="186,5,369,32"/>
-<area shape="rect" id="node3" href="$ifx_radar___window_8c.html#a79a686fe92b4630a286714dc2ce5e0d2" title="This function generates the coefficients of a Hanning window for a given length. " alt="" coords="191,56,363,83"/>
-<area shape="rect" id="node4" href="$ifx_radar___window_8c.html#ae193c94330798ff958c38bcb7f6f1f6c" title="This function generates the coefficients of a Blackman window for a given length. ..." alt="" coords="168,107,387,133"/>
-<area shape="rect" id="node5" href="$ifx_radar___window_8c.html#adf283e0c77fd5698dd8d95df9db6adc6" title="This function generates the coefficients of a Chebyshev window for a given length. " alt="" coords="183,157,372,184"/>
-<area shape="rect" id="node6" href="$ifx_radar___window_8c.html#af3ab590ed7717a0d6451694f91693c68" title="Computes Chebyshev polynomial of the first kind. " alt="" coords="435,157,528,184"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="ifx_range_spectrum_destroy" name="ifx_range_spectrum_destroy">
-<area shape="rect" id="node2" href="$ifx_radar___vector_8c.html#a6bffd531b30623a1a709b51511c95bff" title="Frees the memory allocated for a complex data array for a specified number of elements. " alt="" coords="601,107,753,133"/>
-<area shape="rect" id="node4" href="$ifx_radar___matrix_8c.html#a9407fd0b108c8d3977c755f291ce1538" title="Frees memory for a complex matrix defined by ifx_matrix_create_c and sets the length of the matrix to..." alt="" coords="400,5,553,32"/>
-<area shape="rect" id="node5" href="$ifx_radar___preprocessed_f_f_t_8c.html#ae3d45d323a428337c74aff1f3bbb0ae4" title="This destroys handle (object) for 1D FFT chain along with internal memories. " alt="" coords="201,150,352,191"/>
-<area shape="rect" id="node8" href="$ifx_radar___mem_8c.html#a97222be1e319035121a5694f629de8d9" title="Deallocates the memory which has been allocated by ifx_mem_alloc or ifx_mem_calloc. " alt="" coords="623,259,732,285"/>
-<area shape="rect" id="node3" href="$ifx_radar___mem_8c.html#a3ff07fb6789dadf1d89dc68bae5d8697" title="Deallocates the memory which has been allocated by ifx_mem_aligned_alloc. " alt="" coords="801,107,964,133"/>
-<area shape="rect" id="node6" href="$ifx_radar___f_f_t_8c.html#a6ee78e1537e689c7506b9a4d69330ab8" title="Performs destruction of FFT handle (object) to clear internal states used for a particular FFT size..." alt="" coords="421,157,532,184"/>
-<area shape="rect" id="node7" href="$ifx_radar___vector_8c.html#a60b91857973a08f8827a8e294703f19f" title="Frees the memory allocated for a real data array for a specified number of elements. " alt="" coords="602,157,753,184"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="ifx_complex_arg" name="ifx_complex_arg">
-<area shape="rect" id="node2" href="$ifx_radar___complex_8h.html#abe053442cca29b08f7cb0d0ca7f456bb" title="ifx_complex_to_polar" alt="" coords="179,5,335,32"/>
-<area shape="rect" id="node3" href="$ifx_radar___complex_8h.html#aa94c102941759a3e0857cdfd65efc752" title="ifx_complex_ln" alt="" coords="383,5,497,32"/>
-<area shape="rect" id="node4" href="$ifx_radar___complex_8h.html#abc3507241521db5f47ac4a191d8dc628" title="ifx_complex_log10" alt="" coords="545,5,684,32"/>
-<area shape="rect" id="node5" href="$ifx_radar___math_8c.html#ab6d94b6271b0ee4461052f7de38f2f62" title="ifx_math_vector_log10_c" alt="" coords="732,5,912,32"/>
-</map>

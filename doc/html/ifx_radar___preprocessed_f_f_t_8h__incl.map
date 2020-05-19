@@ -1,9 +1,0 @@
-<map id="libs/radar_sdk/inc/ifxRadar_PreprocessedFFT.h" name="libs/radar_sdk/inc/ifxRadar_PreprocessedFFT.h">
-<area shape="rect" id="node3" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="43,244,165,271"/>
-<area shape="rect" id="node4" href="$ifx_radar___f_f_t_8h.html" title="This file defines the API to calculate fft signal and spectrum. " alt="" coords="99,95,210,121"/>
-<area shape="rect" id="node5" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="205,169,337,196"/>
-<area shape="rect" id="node9" href="$ifx_radar___math_8h.html" title="This file defines the API of mathematical operations such as mean calculation, scalar removal from an..." alt="" coords="449,95,573,121"/>
-<area shape="rect" id="node10" href="$ifx_radar___window_8h.html" title="This file defines the API to configure the coefficients of various Window Functions. " alt="" coords="285,95,424,121"/>
-<area shape="rect" id="node7" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="286,319,413,345"/>
-<area shape="rect" id="node8" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="331,244,479,271"/>
-</map>

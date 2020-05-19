@@ -1,8 +1,0 @@
-<map id="ifx_vector_copy_c" name="ifx_vector_copy_c">
-<area shape="rect" id="node2" href="$ifx_radar___f_f_t_8h.html#a6fc04d740dc0b6e90b6bb5387c5bc473" title="Performs FFT transform on a complex input IQ and produces a complex output IQ FFT signal..." alt="" coords="188,78,287,105"/>
-<area shape="rect" id="node3" href="$ifx_radar___preprocessed_f_f_t_8h.html#ae90f9d0b107192573ce81fab38c69952" title="It calculates 1D FFT for complex input with some pre&#45;processing steps like mean removal and windowing..." alt="" coords="335,71,485,112"/>
-<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="550,5,721,47"/>
-<area shape="rect" id="node5" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="550,71,721,112"/>
-<area shape="rect" id="node6" href="$ifx_radar___range_spectrum_8c.html#aa36a40e3a2db15f2791c2f79e4393eae" title="ifx_range_spectrum\l_coherent_integration_run_c" alt="" coords="533,136,737,177"/>
-<area shape="rect" id="node7" href="$ifx_radar___range_spectrum_8h.html#adca08d082b23eadaadac34a9afdf42c1" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="785,136,933,177"/>
-</map>

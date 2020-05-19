@@ -1,8 +1,0 @@
-<map id="ifx_preprocessed_fft_run_r" name="ifx_preprocessed_fft_run_r">
-<area shape="rect" id="node2" href="$ifx_radar___math_8c.html#aed03537d9981f69e4ef39441edf8b8dc" title="Computes the arithmetic mean from a real valued array for a given array length. " alt="" coords="221,5,382,32"/>
-<area shape="rect" id="node3" href="$ifx_radar___math_8c.html#a7204cef6632f667b18bf01ede249d150" title="Removes a scalar value from each sample of a real valued array. " alt="" coords="204,56,399,83"/>
-<area shape="rect" id="node4" href="$ifx_radar___math_8c.html#a9651b3492de88dc80fb1796dff344295" title="Computes element wise multiplication between real input and output data. " alt="" coords="228,107,375,133"/>
-<area shape="rect" id="node5" href="$ifx_radar___f_f_t_8c.html#a0b29c13e155929a281e89a1a11b7716b" title="Performs FFT transform on a real/complex input (I/Q) and produces a complex output IQ FFT signal..." alt="" coords="253,157,349,184"/>
-<area shape="rect" id="node6" href="$ifx_radar___vector_8c.html#a60788d575ba480a8123147f45978cb28" title="Copies a real vector content into another real vector within the given boundaries. " alt="" coords="447,132,579,159"/>
-<area shape="rect" id="node7" href="$ifx_radar___complex_8c.html#a9c98f41de6dab9f04f71ea8578647fdf" title="ifx_complex_conj" alt="" coords="447,183,578,209"/>
-</map>

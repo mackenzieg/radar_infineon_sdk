@@ -1,4 +1,0 @@
-<map id="ifx_device_destroy_frame" name="ifx_device_destroy_frame">
-<area shape="rect" id="node2" href="$ifx_radar___frame_8h.html#a26abe6bb17201ae8bc68ee24985332ae" title="This function creates a frame structure for time domain data acquisition. " alt="" coords="192,13,369,39"/>
-<area shape="rect" id="node3" href="$ifx_radar___device_control_8h.html#ae23be33710d02629f456c2e410df5db5" title="This function creates a frame structure for time domain data acquisition using information from a ifx..." alt="" coords="417,5,595,47"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="libs/radar_sdk/inc/ifxRadar_MTI.h" name="libs/radar_sdk/inc/ifxRadar_MTI.h">
-<area shape="rect" id="node2" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="30,169,152,196"/>
-<area shape="rect" id="node3" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="188,244,314,271"/>
-<area shape="rect" id="node5" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="185,95,317,121"/>
-<area shape="rect" id="node7" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="177,169,325,196"/>
-</map>

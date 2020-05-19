@@ -1,8 +1,0 @@
-<map id="libs/radar_sdk/src/ifxRadar_PeakSearch.c" name="libs/radar_sdk/src/ifxRadar_PeakSearch.c">
-<area shape="rect" id="node4" href="$ifx_radar___peak_search_8h.html" title="This file defines the API for peak&#45;search module. " alt="" coords="193,95,361,121"/>
-<area shape="rect" id="node11" href="$ifx_radar___mem_8h.html" title="This file defines the API for memory allocation and deallocation as well as aligned allocation and al..." alt="" coords="385,95,509,121"/>
-<area shape="rect" id="node5" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="211,169,343,196"/>
-<area shape="rect" id="node7" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="213,319,340,345"/>
-<area shape="rect" id="node9" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="259,244,407,271"/>
-<area shape="rect" id="node10" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="431,244,554,271"/>
-</map>

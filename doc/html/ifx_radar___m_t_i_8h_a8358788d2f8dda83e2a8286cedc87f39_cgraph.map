@@ -1,5 +1,0 @@
-<map id="ifx_mti_create" name="ifx_mti_create">
-<area shape="rect" id="node2" href="$ifx_radar___mem_8c.html#aa9ecfd0f473eb3e279e3a1fac86f47f8" title="Allocates memory of defined size. " alt="" coords="180,5,293,32"/>
-<area shape="rect" id="node3" href="$ifx_radar___vector_8c.html#a548be520d8c6c8d37e2abe43d0adf6c4" title="Allocates memory for a real data array for a specified number of elements and initializes it to zero..." alt="" coords="165,56,308,83"/>
-<area shape="rect" id="node4" href="$ifx_radar___mem_8c.html#a7e7a09693e3e47510a771b356f25d29e" title="Allocates memory of defined size with specified alignment. " alt="" coords="356,56,523,83"/>
-</map>

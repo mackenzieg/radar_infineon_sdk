@@ -1,7 +1,0 @@
-<map id="libs/radar_sdk/inc/ifxRadar_Frame.h" name="libs/radar_sdk/inc/ifxRadar_Frame.h">
-<area shape="rect" id="node2" href="$ifx_radar___device_control_8c.html" title="Creation of memory for frame and connection to the device via commlib. " alt="" coords="5,184,189,225"/>
-<area shape="rect" id="node3" href="$ifx_radar___frame_8c.html" title="This file defines the API to create and destroy frames. " alt="" coords="82,95,217,136"/>
-<area shape="rect" id="node4" href="$ifx_radar___device_control_8h.html" title="This file defines the API for simple radar device control operations. " alt="" coords="241,95,426,136"/>
-<area shape="rect" id="node5" href="$ifx_radar_s_d_k_8h.html" title="Master header file for Radar SDK. " alt="" coords="267,184,399,225"/>
-<area shape="rect" id="node6" href="$ifx_radar___version_8c.html" title="Version File. " alt="" coords="262,273,405,315"/>
-</map>

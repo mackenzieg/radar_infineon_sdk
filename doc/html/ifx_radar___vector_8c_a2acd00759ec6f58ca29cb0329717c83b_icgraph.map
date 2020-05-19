@@ -1,5 +1,0 @@
-<map id="ifx_vector_rotate_r" name="ifx_vector_rotate_r">
-<area shape="rect" id="node2" href="$ifx_radar___f_f_t_8h.html#ae146fd9e03522ce788acc6ab838e9388" title="Performs shift on a FFT amplitude spectrum (real values) to bring DC bin in the center of spectrum..." alt="" coords="195,46,297,73"/>
-<area shape="rect" id="node3" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="345,5,516,47"/>
-<area shape="rect" id="node4" href="$ifx_radar___range_doppler_map_8h.html#a13339a7e33219d5f5e0f761715d90a89" title="Performs signal processing on a complex input IQ (e.g. " alt="" coords="345,71,516,112"/>
-</map>

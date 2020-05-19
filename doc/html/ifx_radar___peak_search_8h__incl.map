@@ -1,6 +1,0 @@
-<map id="libs/radar_sdk/inc/ifxRadar_PeakSearch.h" name="libs/radar_sdk/inc/ifxRadar_PeakSearch.h">
-<area shape="rect" id="node2" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="99,95,231,121"/>
-<area shape="rect" id="node4" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="101,244,228,271"/>
-<area shape="rect" id="node6" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="147,169,295,196"/>
-<area shape="rect" id="node7" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="319,169,442,196"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="ifx_Range_Spectrum_s" name="ifx_Range_Spectrum_s">
-<area shape="rect" id="node2" href="$structifx___preprocessed___f_f_t__s.html" title="Handle for Range Spectrum processing. " alt="" coords="389,317,561,344"/>
-<area shape="rect" id="node3" href="$structifx___math___axis___spec__t.html" title="This typedef contains semantics of an axis that represents a physical quantity. " alt="" coords="5,205,164,231"/>
-<area shape="rect" id="node4" href="$structifx___f_f_t__s.html" title="ifx_FFT_s" alt="" coords="436,205,515,231"/>
-<area shape="rect" id="node5" href="$structifx___vector___r__t.html" title="Defines the structure for one dimensional Real data array used within API. " alt="" coords="241,95,352,121"/>
-<area shape="rect" id="node6" href="$structifx___vector___c__t.html" title="Defines the structure for one dimensional Complex data array used within API. " alt="" coords="594,95,706,121"/>
-<area shape="rect" id="node7" href="$structifx___complex__s.html" title="ifx_Complex_s" alt="" coords="701,5,815,32"/>
-<area shape="rect" id="node8" href="$structifx___matrix___c__t.html" title="Defines the structure for one dimensional Complex data array used within API. " alt="" coords="797,145,908,172"/>
-</map>

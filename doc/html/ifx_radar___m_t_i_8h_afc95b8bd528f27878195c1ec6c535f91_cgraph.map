@@ -1,5 +1,0 @@
-<map id="ifx_mti_destroy" name="ifx_mti_destroy">
-<area shape="rect" id="node2" href="$ifx_radar___vector_8c.html#a60b91857973a08f8827a8e294703f19f" title="Frees the memory allocated for a real data array for a specified number of elements. " alt="" coords="172,5,323,32"/>
-<area shape="rect" id="node4" href="$ifx_radar___mem_8c.html#a97222be1e319035121a5694f629de8d9" title="Deallocates the memory which has been allocated by ifx_mem_alloc or ifx_mem_calloc. " alt="" coords="193,56,302,83"/>
-<area shape="rect" id="node3" href="$ifx_radar___mem_8c.html#a3ff07fb6789dadf1d89dc68bae5d8697" title="Deallocates the memory which has been allocated by ifx_mem_aligned_alloc. " alt="" coords="371,5,533,32"/>
-</map>

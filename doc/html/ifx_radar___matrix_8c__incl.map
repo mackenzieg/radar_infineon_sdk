@@ -1,8 +1,0 @@
-<map id="libs/radar_sdk/src/ifxRadar_Matrix.c" name="libs/radar_sdk/src/ifxRadar_Matrix.c">
-<area shape="rect" id="node4" href="$ifx_radar___matrix_8h.html" title="This file defines the API to create and destroy matrices. " alt="" coords="193,95,323,121"/>
-<area shape="rect" id="node11" href="$ifx_radar___mem_8h.html" title="This file defines the API for memory allocation and deallocation as well as aligned allocation and al..." alt="" coords="348,95,472,121"/>
-<area shape="rect" id="node6" href="$ifx_radar___complex_8h.html" title="This file defines the data types used within the API. " alt="" coords="255,244,403,271"/>
-<area shape="rect" id="node7" href="$ifx_radar___types_8h.html" title="This file defines the data types used within the API. " alt="" coords="235,319,361,345"/>
-<area shape="rect" id="node8" href="$ifx_radar___vector_8h.html" title="This file configures operations such as creation and destruction of vectors, print vector samples ont..." alt="" coords="375,169,507,196"/>
-<area shape="rect" id="node10" href="$ifx_radar___error_8h.html" title="This file defines error codes and error handling macros. " alt="" coords="569,244,691,271"/>
-</map>

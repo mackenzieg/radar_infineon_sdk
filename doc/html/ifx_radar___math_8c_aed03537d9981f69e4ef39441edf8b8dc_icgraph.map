@@ -1,6 +1,0 @@
-<map id="ifx_math_get_mean_r" name="ifx_math_get_mean_r">
-<area shape="rect" id="node2" href="$ifx_radar___preprocessed_f_f_t_8h.html#ab36faeb04ebd14c0e13d97673569086f" title="It calculates 1D FFT for real input with some pre&#45;processing steps like mean removal and windowing..." alt="" coords="215,39,365,80"/>
-<area shape="rect" id="node3" href="$ifx_radar___range_doppler_map_8h.html#a622367993cc1cf9cb5c751a270ade259" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="429,5,600,47"/>
-<area shape="rect" id="node4" href="$ifx_radar___range_spectrum_8c.html#a31dc9cf3742386dec838d12d5f4bee58" title="ifx_range_spectrum\l_coherent_integration_run_r" alt="" coords="413,71,616,112"/>
-<area shape="rect" id="node5" href="$ifx_radar___range_spectrum_8h.html#afa1e8e01d5f6dc89eb4eba3539fe47c6" title="Performs signal processing on a real input I or Q (e.g. " alt="" coords="664,71,812,112"/>
-</map>

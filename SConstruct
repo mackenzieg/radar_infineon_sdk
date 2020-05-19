@@ -2,8 +2,7 @@
 
 import os
 
-root_dir = "."
-for dir in os.listdir(os.path.join(root_dir, "example")):
-    prog_name = dir
-    SConscript(os.path.join(root_dir, 'example', prog_name, 'SConscript'), exports=['prog_name'])
+ROOT_DIR = "."
+PROG_NAME = "app_presense_detection"
 
+SConscript('SConscript', exports=['PROG_NAME'])

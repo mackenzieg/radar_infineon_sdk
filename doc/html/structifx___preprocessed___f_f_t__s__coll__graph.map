@@ -1,7 +1,0 @@
-<map id="ifx_Preprocessed_FFT_s" name="ifx_Preprocessed_FFT_s">
-<area shape="rect" id="node2" href="$structifx___math___axis___spec__t.html" title="This typedef contains semantics of an axis that represents a physical quantity. " alt="" coords="5,193,164,219"/>
-<area shape="rect" id="node3" href="$structifx___f_f_t__s.html" title="ifx_FFT_s" alt="" coords="415,193,493,219"/>
-<area shape="rect" id="node4" href="$structifx___vector___r__t.html" title="Defines the structure for one dimensional Real data array used within API. " alt="" coords="219,95,329,121"/>
-<area shape="rect" id="node5" href="$structifx___vector___c__t.html" title="Defines the structure for one dimensional Complex data array used within API. " alt="" coords="469,95,581,121"/>
-<area shape="rect" id="node6" href="$structifx___complex__s.html" title="ifx_Complex_s" alt="" coords="468,5,581,32"/>
-</map>
