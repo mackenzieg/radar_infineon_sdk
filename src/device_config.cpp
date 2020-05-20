@@ -1,4 +1,4 @@
-#include "device_config.h"
+#include "device_config.hpp"
 
 device_config::device_config()
 {
