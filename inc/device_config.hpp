@@ -9,7 +9,7 @@ class device_config
         device_config();
         virtual ~device_config();
 
-        ifx_Device_config_t* get_device_config();
+        ifx_Device_Config_t* get_device_config();
 
     protected:
 
@@ -49,10 +49,10 @@ class device_config
             uint32_t m_fmcw_center_frequency_khz;
         } device_metrics_t;
 
-        # Metrics for device
+        // Metrics for device
         device_metrics_t m_device_metrics;
-        # SDK Device config structure
-        ifx_Device_config_t m_device_config;
+        // SDK Device config structure
+        ifx_Device_Config_t m_device_config;
 };
 
 #endif // DEVICE_CONFIG_H

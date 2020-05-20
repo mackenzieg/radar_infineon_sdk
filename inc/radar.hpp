@@ -20,9 +20,9 @@ class radar
 
     private:
         device_config m_device_config;
-        # SDK Device handle
+        // SDK Device handle
         ifx_Device_Handle_t m_device_handle;
-        # SDK Frame
+        // SDK Frame
         ifx_Frame_t m_frame;
 
 };

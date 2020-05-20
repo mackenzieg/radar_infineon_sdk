@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ifxRadarSDK.h"
+#include "radar.hpp"
 
 /*
 ==============================================================================
@@ -48,7 +49,7 @@ int main(int argc, char** argv)
 	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
 
     radar radar;
-    radar.pull_frame()
+    radar.pull_frame();
     radar.get_frame();
 
 	while (running)

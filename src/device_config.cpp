@@ -2,18 +2,18 @@
 
 device_config::device_config()
 {
-    m_device_metrics->m_range_resolution = 0.15f;
-    m_device_metrics->m_maximum_range = 9.59f;
-    m_device_metrics->m_speed_resolution = 0.08f;
-    m_device_metrics->m_maximum_speed = 2.45f;
+    m_device_metrics.m_range_resolution = 0.15f;
+    m_device_metrics.m_maximum_range = 9.59f;
+    m_device_metrics.m_speed_resolution = 0.08f;
+    m_device_metrics.m_maximum_speed = 2.45f;
 
-    m_device_metrics->m_frame_rate = 5;
-    m_device_metrics->m_adc_samplerate_hz = 1000000;
-    m_device_metrics->m_bgt_tx_power = 31;
-    m_device_metrics->m_rx_antenna_number = 3;
-    m_device_metrics->m_if_gain_db = 33;
+    m_device_metrics.m_frame_rate = 5;
+    m_device_metrics.m_adc_samplerate_hz = 1000000;
+    m_device_metrics.m_bgt_tx_power = 31;
+    m_device_metrics.m_rx_antenna_number = 3;
+    m_device_metrics.m_if_gain_db = 33;
 
-    m_device_metrics->m_fmcw_center_frequency_khz = 60500000;
+    m_device_metrics.m_fmcw_center_frequency_khz = 60500000;
 
     compute_metrics();
 }
@@ -44,10 +44,10 @@ void device_config::compute_metrics()
      * relationship T = N/f_sr may not be correct, because due to settling processes at the beginning
      * of the chirp the ADC is enabled with some delay after the ramp start.
      */
-    double bandwidth_khz = 0.001 * c0 / (2 * m_device_metrics->m_range_resolution);
+    double bandwidth_khz = 0.001 * c0 / (2 * m_device_metrics.m_range_resolution);
 
-    m_device_config->lower_frequency_kHz = m_device_metrics->m_fmcw_center_frequency_khz - (uint32_t)(bandwidth_khz * 0.5 + 0.5);
-    m_device_config->upper_frequency_kHz = m_device_metrics->m_fmcw_center_frequency_khz + (uint32_t)(bandwidth_khz * 0.5 + 0.5);
+    m_device_config.lower_frequency_kHz = m_device_metrics.m_fmcw_center_frequency_khz - (uint32_t)(bandwidth_khz * 0.5 + 0.5);
+    m_device_config.upper_frequency_kHz = m_device_metrics.m_fmcw_center_frequency_khz + (uint32_t)(bandwidth_khz * 0.5 + 0.5);
 
         /*
      * The number of bins multiplied with the range resolution results in the total range. Due to
@@ -59,23 +59,23 @@ void device_config::compute_metrics()
      * is rounded to the next power of two increasing the total range. The trick to calculate this
      * rounding was found here: https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2.
      */
-    m_device_config->num_samples_per_chirp = (uint32_t) (2.0f * m_device_metrics->m_maximum_range / m_device_metrics->m_range_resolution);
+    m_device_config.num_samples_per_chirp = (uint32_t) (2.0f * m_device_metrics.m_maximum_range / m_device_metrics.m_range_resolution);
 
-    m_device_config->num_samples_per_chirp--;
-    m_device_config->num_samples_per_chirp |= m_device_config->num_samples_per_chirp >> 1;
-    m_device_config->num_samples_per_chirp |= m_device_config->num_samples_per_chirp >> 2;
-    m_device_config->num_samples_per_chirp |= m_device_config->num_samples_per_chirp >> 4;
-    m_device_config->num_samples_per_chirp |= m_device_config->num_samples_per_chirp >> 8;
-    m_device_config->num_samples_per_chirp |= m_device_config->num_samples_per_chirp >> 16;
-    m_device_config->num_samples_per_chirp++;
+    m_device_config.num_samples_per_chirp--;
+    m_device_config.num_samples_per_chirp |= m_device_config.num_samples_per_chirp >> 1;
+    m_device_config.num_samples_per_chirp |= m_device_config.num_samples_per_chirp >> 2;
+    m_device_config.num_samples_per_chirp |= m_device_config.num_samples_per_chirp >> 4;
+    m_device_config.num_samples_per_chirp |= m_device_config.num_samples_per_chirp >> 8;
+    m_device_config.num_samples_per_chirp |= m_device_config.num_samples_per_chirp >> 16;
+    m_device_config.num_samples_per_chirp++;
 
     /*
      * This formula was provided by algorithm team. Detailed information about this may be found
      * in some papers. At this point there is no documentation because the implementor of this
      * function does not know those papers. Sorry.
      */
-    const double lambda = c0 / (1000.f * m_device_metrics->m_fmcw_center_frequency_khz);
-    m_device_config->chirp_to_chirp_time_100ps = (uint64_t) (1.0e10 * lambda / (double)(4.0f * m_device_metrics->m_maximum_speed));
+    const double lambda = c0 / (1000.f * m_device_metrics.m_fmcw_center_frequency_khz);
+    m_device_config.chirp_to_chirp_time_100ps = (uint64_t) (1.0e10 * lambda / (double)(4.0f * m_device_metrics.m_maximum_speed));
 
     /*
      * The number of bins multiplied with the speed resolution results in the maximum speed. The
@@ -87,24 +87,24 @@ void device_config::compute_metrics()
      * is rounded to the next power of two increasing the total range. The trick to calculate this
      * rounding was found here: https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2.
      */
-    m_device_config->num_chirps_per_frame = (uint32_t) (2.0f * m_device_metrics->m_maximum_speed / m_device_metrics->m_speed_resolution);
+    m_device_config.num_chirps_per_frame = (uint32_t) (2.0f * m_device_metrics.m_maximum_speed / m_device_metrics.m_speed_resolution);
 
-    m_device_config->num_chirps_per_frame--;
-    m_device_config->num_chirps_per_frame |= m_device_config->num_chirps_per_frame >> 1;
-    m_device_config->num_chirps_per_frame |= m_device_config->num_chirps_per_frame >> 2;
-    m_device_config->num_chirps_per_frame |= m_device_config->num_chirps_per_frame >> 4;
-    m_device_config->num_chirps_per_frame |= m_device_config->num_chirps_per_frame >> 8;
-    m_device_config->num_chirps_per_frame |= m_device_config->num_chirps_per_frame >> 16;
-    m_device_config->num_chirps_per_frame++;
+    m_device_config.num_chirps_per_frame--;
+    m_device_config.num_chirps_per_frame |= m_device_config.num_chirps_per_frame >> 1;
+    m_device_config.num_chirps_per_frame |= m_device_config.num_chirps_per_frame >> 2;
+    m_device_config.num_chirps_per_frame |= m_device_config.num_chirps_per_frame >> 4;
+    m_device_config.num_chirps_per_frame |= m_device_config.num_chirps_per_frame >> 8;
+    m_device_config.num_chirps_per_frame |= m_device_config.num_chirps_per_frame >> 16;
+    m_device_config.num_chirps_per_frame++;
 
-    m_device_config->frame_period_us   = (uint64_t) (1.0e6f / m_device_metrics->m_frame_rate);
-    m_device_config->adc_samplerate_hz = m_device_metrics->m_adc_samplerate_hz;
-    m_device_config->bgt_tx_power      = m_device_metrics->m_bgt_tx_power;
-    m_device_config->rx_antenna_mask   = (0x01 << (m_device_metrics->m_rx_antenna_number - 1));
-    m_device_config->if_gain_dB        = m_device_metrics->m_if_gain_db;
+    m_device_config.frame_period_us   = (uint64_t) (1.0e6f / m_device_metrics.m_frame_rate);
+    m_device_config.adc_samplerate_hz = m_device_metrics.m_adc_samplerate_hz;
+    m_device_config.bgt_tx_power      = m_device_metrics.m_bgt_tx_power;
+    m_device_config.rx_antenna_mask   = (0x01 << (m_device_metrics.m_rx_antenna_number - 1));
+    m_device_config.if_gain_dB        = m_device_metrics.m_if_gain_db;
 }
 
-ifx_Device_config_t device_config::get_device_config()
+ifx_Device_Config_t* device_config::get_device_config()
 {
     return &m_device_config;
 }
