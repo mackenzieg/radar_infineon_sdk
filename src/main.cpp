@@ -1,3 +1,6 @@
+#include <signal.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "ifxRadarSDK.h"
 
 /*
@@ -29,11 +32,29 @@
 
 #define IFX_THRESHOLD_FACTOR_ABSENCE_FINE_PEAK      (1.5f)      /**< Decides threshold factor param in ifx_Peak_Search_Config_t for configuring the
                                                                    "absence_fine_peak" peak search module that is active in the ABSENCE state and decides the
-                                                                         range bins on which the slow time FFT needs to be performed [internal param] */      
+                                                                         range bins on which the slow time FFT needs to be performed [internal param] */
+bool running = true;
+
+void signal_handle(int sig)
+{
+    if (sig != SIGINT)
+        return;
+
+    running = false;
+}
 
 int main(int argc, char** argv)
 {
 	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
+
+    radar radar;
+    radar.pull_frame()
+    radar.get_frame();
+
+	while (running)
+    {
+
+    }
 
     return 0;
 }
