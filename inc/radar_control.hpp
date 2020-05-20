@@ -1,16 +1,15 @@
-#ifndef RADAR_H
-#define RADAR_H
+#ifndef RADAR_CONTROL_H
+#define RADAR_CONTROL_H
 
-#include "ifxRadar_DeviceConfig.h"
 #include "ifxRadar_DeviceControl.h"
 #include "ifxRadar_Error.h"
-#include "device_config.hpp"
+#include "radar_config.hpp"
 
-class radar
+class radar_control
 {
     public:
-        radar(device_config*);
-        virtual ~radar();
+        radar_control(radar_config *rc);
+        virtual ~radar_control();
 
         ifx_Error_t pull_frame();
 
@@ -19,7 +18,7 @@ class radar
     protected:
 
     private:
-        device_config* m_device_config;
+        radar_config* m_radar_config;
         // SDK Device handle
         ifx_Device_Handle_t m_device_handle;
         // SDK Frame
@@ -27,4 +26,4 @@ class radar
 
 };
 
-#endif // RADAR_H
+#endif // RADAR_CONTROL_H

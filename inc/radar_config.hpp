@@ -1,13 +1,13 @@
-#ifndef DEVICE_CONFIG_H
-#define DEVICE_CONFIG_H
+#ifndef RADAR_CONFIG_H
+#define RADAR_CONFIG_H
 
 #include "ifxRadar_DeviceConfig.h"
 
-class device_config
+class radar_config
 {
     public:
-        device_config();
-        virtual ~device_config();
+        radar_config();
+        virtual ~radar_config();
 
         ifx_Device_Config_t* get_device_config();
 
@@ -55,4 +55,4 @@ class device_config
         ifx_Device_Config_t m_device_config;
 };
 
-#endif // DEVICE_CONFIG_H
+#endif // RADAR_CONFIG_H

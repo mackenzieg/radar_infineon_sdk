@@ -1,6 +1,6 @@
-#include "device_config.hpp"
+#include "radar_config.hpp"
 
-device_config::device_config()
+radar_config::radar_config()
 {
     m_device_metrics.m_range_resolution = 0.15f;
     m_device_metrics.m_maximum_range = 9.59f;
@@ -18,12 +18,12 @@ device_config::device_config()
     compute_metrics();
 }
 
-device_config::~device_config()
+radar_config::~radar_config()
 {
     //dtor
 }
 
-void device_config::compute_metrics()
+void radar_config::compute_metrics()
 {
     const double c0 = 2.99792458e8;
         /*
@@ -104,7 +104,7 @@ void device_config::compute_metrics()
     m_device_config.if_gain_dB        = m_device_metrics.m_if_gain_db;
 }
 
-ifx_Device_Config_t* device_config::get_device_config()
+ifx_Device_Config_t* radar_config::get_device_config()
 {
     return &m_device_config;
 }
