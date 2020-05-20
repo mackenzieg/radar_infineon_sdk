@@ -46,9 +46,12 @@ void signal_handle(int sig)
 
 int main(int argc, char** argv)
 {
+    signal(SIGINT, signal_handle);
+
 	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
 
     radar radar;
+    printf("Pulling frame from device\n");
     radar.pull_frame();
     radar.get_frame();
 
@@ -56,6 +59,8 @@ int main(int argc, char** argv)
     {
 
     }
+
+    printf("Closing connection\n");
 
     return 0;
 }

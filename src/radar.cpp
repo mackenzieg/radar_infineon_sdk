@@ -2,7 +2,7 @@
 
 radar::radar()
 {
-    printf("Configuring device.");
+    printf("Configuring device\n");
     // Create device handle
     if (ifx_device_create(m_device_config.get_device_config(), &m_device_handle))
     {
