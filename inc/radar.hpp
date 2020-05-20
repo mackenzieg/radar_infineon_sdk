@@ -9,7 +9,7 @@
 class radar
 {
     public:
-        radar();
+        radar(device_config*);
         virtual ~radar();
 
         ifx_Error_t pull_frame();
@@ -19,7 +19,7 @@ class radar
     protected:
 
     private:
-        device_config m_device_config;
+        device_config* m_device_config;
         // SDK Device handle
         ifx_Device_Handle_t m_device_handle;
         // SDK Frame

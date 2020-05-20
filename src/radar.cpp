@@ -1,10 +1,10 @@
 #include "radar.hpp"
 
-radar::radar()
+radar::radar(device_config* dc) : device_config(dc)
 {
     printf("Configuring device\n");
     // Create device handle
-    if (ifx_device_create(m_device_config.get_device_config(), &m_device_handle))
+    if (ifx_device_create(m_device_config->get_device_config(), &m_device_handle))
     {
         //TODO implement error handling
     }
@@ -13,7 +13,6 @@ radar::radar()
     {
         // TODO implement error handling
     }
-
 }
 
 radar::~radar()

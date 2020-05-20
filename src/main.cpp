@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ifxRadarSDK.h"
+#include "ifxRadar_Error.h"
 #include "radar.hpp"
 
 /*
@@ -50,14 +51,25 @@ int main(int argc, char** argv)
 
 	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
 
-    radar radar;
+    device_config dc;
+
+    radar radar(dc);
     printf("Pulling frame from device\n");
     radar.pull_frame();
-    radar.get_frame();
 
+    ifx_Error_t ret = IFX_OK;
 	while (running)
     {
+        ret = radar.pull_frame();
+        // No data avaliable data to pull
+        if (ret == IFX_ERROR_FIFO_OVERFLOW)
+        {
+            continue;
+        }
 
+        ifx_Frame_t* frame = radar.get_frame();
+
+        printf("Num of active rx: %d", frame->num_rx);
     }
 
     printf("Closing connection\n");
