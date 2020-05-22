@@ -15,6 +15,8 @@ class radar_control
 
         ifx_Frame_t* get_frame();
 
+        ifx_Device_Handle_t *get_device_handle();
+
     protected:
 
     private:

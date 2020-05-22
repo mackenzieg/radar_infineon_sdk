@@ -10,10 +10,22 @@ radar_config::radar_config()
     m_device_metrics.m_frame_rate = 5;
     m_device_metrics.m_adc_samplerate_hz = 1000000;
     m_device_metrics.m_bgt_tx_power = 31;
-    m_device_metrics.m_rx_antenna_number = 3;
+    m_device_metrics.m_rx_antenna_number = DEVICE_RX_ANTENNA1 | DEVICE_RX_ANTENNA2 | DEVICE_RX_ANTENNA3;
     m_device_metrics.m_if_gain_db = 33;
 
     m_device_metrics.m_fmcw_center_frequency_khz = 60500000;
+
+    m_device_metrics.m_range_fft_window_type = WINDOW_BLACKMANHARRIS;
+
+    m_device_metrics.m_range_fft_window_alpha = 0.0f;
+
+    m_device_metrics.m_range_spectrum_mode = RANGE_SPECTRUM_MODE_COHERENT_INTEGRATION;
+
+    m_device_metrics.m_threshold_factor_presence_peak = 3.0f;
+
+    m_device_metrics.m_threshold_factor_absence_peak = 4.0f;
+
+    m_device_metrics.m_threshold_factor_absence_fine_peak = 1.5f;
 
     compute_metrics();
 }
@@ -100,11 +112,47 @@ void radar_config::compute_metrics()
     m_device_config.frame_period_us   = (uint64_t) (1.0e6f / m_device_metrics.m_frame_rate);
     m_device_config.adc_samplerate_hz = m_device_metrics.m_adc_samplerate_hz;
     m_device_config.bgt_tx_power      = m_device_metrics.m_bgt_tx_power;
-    m_device_config.rx_antenna_mask   = (0x01 << (m_device_metrics.m_rx_antenna_number - 1));
+    m_device_config.rx_antenna_mask   = m_device_metrics.m_rx_antenna_number;
     m_device_config.if_gain_dB        = m_device_metrics.m_if_gain_db;
+
+
+    m_range_spectrum_config =
+    ifx_Range_Spectrum_Config_t{
+        .spect_threshold = 0,
+        .output_scale_type = SCALE_TYPE_LINEAR,
+        .fft_config =
+        {
+                .fft_input_len = m_device_config.num_samples_per_chirp,
+                .fft_type = FFT_TYPE_R2C,
+                .fft_size = m_device_metrics.m_range_fft_size,
+                .mean_removal_flag = 1,
+                .input_sampling_freq_khz = (m_device_config.adc_samplerate_hz) / 1000,
+                .window_config =
+                 {
+                      .type = m_device_metrics.m_range_fft_window_type,
+                      .size = m_device_config.num_samples_per_chirp,
+                      .at_dB = m_device_metrics.m_range_fft_window_alpha
+                 },
+                .is_normalized_window =1
+        },
+        .num_of_chirps_per_frame = m_device_config.num_chirps_per_frame,
+        .chirp_bandwidth_khz = (m_device_config.upper_frequency_kHz -
+                                m_device_config.lower_frequency_kHz)
+    };
+
+}
+
+device_metrics_t* radar_config::get_device_metrics()
+{
+    return &m_device_metrics;
 }
 
 ifx_Device_Config_t* radar_config::get_device_config()
 {
     return &m_device_config;
+}
+
+ifx_Range_Spectrum_Config_t* radar_config::get_range_spectrum_config()
+{
+    return &m_range_spectrum_config;
 }

@@ -30,3 +30,8 @@ ifx_Frame_t* radar_control::get_frame()
 {
     return &m_frame;
 }
+
+ifx_Device_Handle_t* radar_control::get_device_handle()
+{
+    return &m_device_handle;
+}

@@ -4,6 +4,7 @@
 #include "ifxRadarSDK.h"
 #include "ifxRadar_Error.h"
 #include "radar_control.hpp"
+#include "range_spectrum.hpp"
 
 bool running = true;
 
@@ -24,6 +25,8 @@ int main(int argc, char** argv)
     radar_config rc;
 
     radar_control radar_control(&rc);
+
+    range_spectrum range_spectrum(&rc);
     printf("Pulling frame from device\n");
 
     ifx_Error_t ret = IFX_OK;
@@ -39,6 +42,8 @@ int main(int argc, char** argv)
         ifx_Frame_t* frame = radar_control.get_frame();
 
         printf("Num of active rx: %d\n", frame->num_rx);
+
+        range_spectrum.run(&(frame->rx_data[0]));
     }
 
     printf("Closing connection\n");
