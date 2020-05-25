@@ -19,6 +19,8 @@ radar_config::radar_config()
 
     m_device_metrics.m_range_fft_window_alpha = 0.0f;
 
+    m_device_metrics.m_mti_weght = 1.0f;
+
     m_device_metrics.m_range_spectrum_mode = RANGE_SPECTRUM_MODE_COHERENT_INTEGRATION;
 
     m_device_metrics.m_threshold_factor_presence_peak = 3.0f;
@@ -116,8 +118,8 @@ void radar_config::compute_metrics()
     m_device_config.if_gain_dB        = m_device_metrics.m_if_gain_db;
 
 
-    m_range_spectrum_config =
-    ifx_Range_Spectrum_Config_t{
+    m_range_spectrum_config = ifx_Range_Spectrum_Config_t
+    {
         .spect_threshold = 0,
         .output_scale_type = SCALE_TYPE_LINEAR,
         .fft_config =
@@ -154,5 +156,5 @@ ifx_Device_Config_t* radar_config::get_device_config()
 
 ifx_Range_Spectrum_Config_t* radar_config::get_range_spectrum_config()
 {
-    return &m_range_spectrum_config;
+    return &(m_range_spectrum_config);
 }
