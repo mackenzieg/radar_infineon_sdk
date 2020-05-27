@@ -5,6 +5,7 @@ CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_DeviceConfig.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Error.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_FFT.h
+CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Frame.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_MTI.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Math.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Matrix.h
@@ -53,5 +54,20 @@ CMakeFiles/radar_sdk.dir/src/radar_config.cpp.o: ../externals/radar_sdk/include/
 CMakeFiles/radar_sdk.dir/src/radar_config.cpp.o: ../include/radar_config.hpp
 CMakeFiles/radar_sdk.dir/src/radar_config.cpp.o: ../src/radar_config.cpp
 
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Complex.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_DeviceConfig.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_DeviceControl.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Error.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_FFT.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Frame.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Math.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Matrix.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_RangeSpectrum.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Types.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Vector.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../externals/radar_sdk/include/ifxRadar_Window.h
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../include/radar_config.hpp
+CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../include/radar_control.hpp
 CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o: ../src/radar_control.cpp
 

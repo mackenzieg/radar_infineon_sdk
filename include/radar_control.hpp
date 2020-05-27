@@ -13,9 +13,9 @@ class radar_control
 
         ifx_Error_t pull_frame();
 
-        ifx_Frame_t* get_frame();
+        ifx_Frame_t get_frame();
 
-        ifx_Device_Handle_t *get_device_handle();
+        ifx_Device_Handle_t get_device_handle();
 
     protected:
 

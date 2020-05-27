@@ -26,12 +26,12 @@ ifx_Error_t radar_control::pull_frame()
     return ifx_device_get_next_frame(m_device_handle, &m_frame);
 }
 
-ifx_Frame_t* radar_control::get_frame()
+ifx_Frame_t radar_control::get_frame()
 {
-    return &m_frame;
+    return m_frame;
 }
 
-ifx_Device_Handle_t* radar_control::get_device_handle()
+ifx_Device_Handle_t radar_control::get_device_handle()
 {
-    return &m_device_handle;
+    return m_device_handle;
 }

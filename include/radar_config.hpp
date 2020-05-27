@@ -49,7 +49,7 @@ typedef struct
     float m_threshold_factor_absence_peak;
     float m_threshold_factor_absence_fine_peak;
 
-    float m_mti_weght;
+    float m_mti_weight;
 } device_metrics_t;
 
 class radar_config

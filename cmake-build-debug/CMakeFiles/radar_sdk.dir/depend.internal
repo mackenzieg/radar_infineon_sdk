@@ -6,6 +6,7 @@ CMakeFiles/radar_sdk.dir/src/dsp.cpp.o
  ../externals/radar_sdk/include/ifxRadar_DeviceConfig.h
  ../externals/radar_sdk/include/ifxRadar_Error.h
  ../externals/radar_sdk/include/ifxRadar_FFT.h
+ ../externals/radar_sdk/include/ifxRadar_Frame.h
  ../externals/radar_sdk/include/ifxRadar_MTI.h
  ../externals/radar_sdk/include/ifxRadar_Math.h
  ../externals/radar_sdk/include/ifxRadar_Matrix.h
@@ -54,4 +55,19 @@ CMakeFiles/radar_sdk.dir/src/radar_config.cpp.o
  ../include/radar_config.hpp
  /home/pi/Desktop/radar_infineon_sdk/src/radar_config.cpp
 CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o
+ ../externals/radar_sdk/include/ifxRadar_Complex.h
+ ../externals/radar_sdk/include/ifxRadar_DeviceConfig.h
+ ../externals/radar_sdk/include/ifxRadar_DeviceControl.h
+ ../externals/radar_sdk/include/ifxRadar_Error.h
+ ../externals/radar_sdk/include/ifxRadar_FFT.h
+ ../externals/radar_sdk/include/ifxRadar_Frame.h
+ ../externals/radar_sdk/include/ifxRadar_Math.h
+ ../externals/radar_sdk/include/ifxRadar_Matrix.h
+ ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
+ ../externals/radar_sdk/include/ifxRadar_RangeSpectrum.h
+ ../externals/radar_sdk/include/ifxRadar_Types.h
+ ../externals/radar_sdk/include/ifxRadar_Vector.h
+ ../externals/radar_sdk/include/ifxRadar_Window.h
+ ../include/radar_config.hpp
+ ../include/radar_control.hpp
  /home/pi/Desktop/radar_infineon_sdk/src/radar_control.cpp

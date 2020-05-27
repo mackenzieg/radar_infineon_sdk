@@ -40,9 +40,11 @@ int main(int argc, char** argv)
             continue;
         }
 
-        ifx_Frame_t* frame = radar_control.get_frame();
+        ifx_Frame_t frame = radar_control.get_frame();
 
-        printf("Num of active rx: %d\n", frame->num_rx);
+        dsp.run(frame);
+
+        printf("Num of active rx: %d\n", frame.num_rx);
     }
 
     printf("Closing connection\n");

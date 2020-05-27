@@ -19,7 +19,7 @@ radar_config::radar_config()
 
     m_device_metrics.m_range_fft_window_alpha = 0.0f;
 
-    m_device_metrics.m_mti_weght = 1.0f;
+    m_device_metrics.m_mti_weight = 1.0f;
 
     m_device_metrics.m_range_spectrum_mode = RANGE_SPECTRUM_MODE_COHERENT_INTEGRATION;
 
@@ -117,6 +117,9 @@ void radar_config::compute_metrics()
     m_device_config.rx_antenna_mask   = m_device_metrics.m_rx_antenna_number;
     m_device_config.if_gain_dB        = m_device_metrics.m_if_gain_db;
 
+    printf("%d\n", m_device_config.num_chirps_per_frame);
+
+    m_device_metrics.m_range_fft_size = (ifx_FFT_Size_t) m_device_config.num_samples_per_chirp;
 
     m_range_spectrum_config = ifx_Range_Spectrum_Config_t
     {
@@ -135,7 +138,7 @@ void radar_config::compute_metrics()
                       .size = m_device_config.num_samples_per_chirp,
                       .at_dB = m_device_metrics.m_range_fft_window_alpha
                  },
-                .is_normalized_window =1
+                .is_normalized_window = 1
         },
         .num_of_chirps_per_frame = m_device_config.num_chirps_per_frame,
         .chirp_bandwidth_khz = (m_device_config.upper_frequency_kHz -
