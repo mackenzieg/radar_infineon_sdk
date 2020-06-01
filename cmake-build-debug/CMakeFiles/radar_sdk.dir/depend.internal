@@ -10,6 +10,7 @@ CMakeFiles/radar_sdk.dir/src/dsp.cpp.o
  ../externals/radar_sdk/include/ifxRadar_MTI.h
  ../externals/radar_sdk/include/ifxRadar_Math.h
  ../externals/radar_sdk/include/ifxRadar_Matrix.h
+ ../externals/radar_sdk/include/ifxRadar_PeakSearch.h
  ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
  ../externals/radar_sdk/include/ifxRadar_RangeSpectrum.h
  ../externals/radar_sdk/include/ifxRadar_Types.h

@@ -7,6 +7,7 @@
 #include "ifxRadar_Matrix.h"
 #include "radar_config.hpp"
 #include "ifxRadar_Frame.h"
+#include "ifxRadar_PeakSearch.h"
 
 class dsp
 {
@@ -46,6 +47,11 @@ class dsp
 
         void create_mti_handle();
         void destroy_mti_handle();
+
+        void create_range_doppler_handle();
+        void destroy_range_doppler_handle();
+
+        float create_scale(ifx_Vector_R_t* win);
 };
 
 #endif // DSP_HPP

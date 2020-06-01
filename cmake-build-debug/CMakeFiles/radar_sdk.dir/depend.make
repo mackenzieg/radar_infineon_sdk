@@ -9,6 +9,7 @@ CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_MTI.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Math.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Matrix.h
+CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_PeakSearch.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_RangeSpectrum.h
 CMakeFiles/radar_sdk.dir/src/dsp.cpp.o: ../externals/radar_sdk/include/ifxRadar_Types.h

@@ -56,6 +56,10 @@ ifxRadar_Vector.h
 ifxRadar_Types.h
 ../externals/radar_sdk/include/ifxRadar_Types.h
 
+../externals/radar_sdk/include/ifxRadar_PeakSearch.h
+ifxRadar_Vector.h
+../externals/radar_sdk/include/ifxRadar_Vector.h
+
 ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
 stdint.h
 -
@@ -119,6 +123,8 @@ radar_config.hpp
 ../include/radar_config.hpp
 ifxRadar_Frame.h
 ../include/ifxRadar_Frame.h
+ifxRadar_PeakSearch.h
+../include/ifxRadar_PeakSearch.h
 
 ../include/radar_config.hpp
 ifxRadar_DeviceConfig.h

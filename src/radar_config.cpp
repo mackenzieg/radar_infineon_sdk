@@ -4,6 +4,7 @@ radar_config::radar_config()
 {
     m_device_metrics.m_range_resolution = 0.15f;
     m_device_metrics.m_maximum_range = 9.59f;
+    m_device_metrics.m_minimum_range = 0.5f;
     m_device_metrics.m_speed_resolution = 0.08f;
     m_device_metrics.m_maximum_speed = 2.45f;
 
@@ -145,6 +146,7 @@ void radar_config::compute_metrics()
                                 m_device_config.lower_frequency_kHz)
     };
 
+    m_device_metrics.m_value_per_bin = (float) (300000.0f / ((m_device_config.upper_frequency_kHz - m_device_config.lower_frequency_kHz) * 2 * (m_device_metrics.m_range_fft_size / m_device_config.num_samples_per_chirp )));
 }
 
 device_metrics_t* radar_config::get_device_metrics()

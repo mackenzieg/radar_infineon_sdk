@@ -17,6 +17,11 @@ typedef struct
     float m_maximum_range;      /**< The bins of the range transform represent the range
                                      between 0m and this value. (If the time domain input data it
                                      is the range-maximum_range_m ... maximum_range_m.) */
+
+    float m_minimum_range;      /**< The bins of the range transform represent the range
+                                     between 0m and this value. (If the time domain input data it
+                                     is the range-maximum_range_m ... maximum_range_m.) */
+
     float m_speed_resolution;   /**< The speed resolution is the distance between two consecutive
                                      bins of the Doppler transform. Note that even though zero
                                      padding before the speed transform seems to increase this
@@ -50,6 +55,8 @@ typedef struct
     float m_threshold_factor_absence_fine_peak;
 
     float m_mti_weight;
+
+    float m_value_per_bin;
 } device_metrics_t;
 
 class radar_config
