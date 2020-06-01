@@ -52,6 +52,7 @@ class dsp
         void destroy_range_doppler_handle();
 
         float create_scale(ifx_Vector_R_t* win);
+        void fft_shift(ifx_Vector_C_t* vector);
 };
 
 #endif // DSP_HPP

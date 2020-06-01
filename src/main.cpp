@@ -19,6 +19,8 @@ void signal_handle(int sig)
 
 int main(int argc, char** argv)
 {
+    printf("Starting\n");
+
     signal(SIGINT, signal_handle);
 
 	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
@@ -34,8 +36,8 @@ int main(int argc, char** argv)
 	while (running)
     {
         ret = radar_control.pull_frame();
-        // No data avaliable data to pull
-        if (ret == IFX_ERROR_FIFO_OVERFLOW)
+        // TODO check for buffer overflow instead of everything
+        if (ret != IFX_OK)
         {
             continue;
         }
@@ -43,8 +45,6 @@ int main(int argc, char** argv)
         ifx_Frame_t frame = radar_control.get_frame();
 
         dsp.run(frame);
-
-        printf("Num of active rx: %d\n", frame.num_rx);
     }
 
     printf("Closing connection\n");

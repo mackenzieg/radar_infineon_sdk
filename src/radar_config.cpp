@@ -3,10 +3,10 @@
 radar_config::radar_config()
 {
     m_device_metrics.m_range_resolution = 0.15f;
-    m_device_metrics.m_maximum_range = 9.59f;
+    m_device_metrics.m_maximum_range = 2.0f;
     m_device_metrics.m_minimum_range = 0.5f;
-    m_device_metrics.m_speed_resolution = 0.08f;
-    m_device_metrics.m_maximum_speed = 2.45f;
+    m_device_metrics.m_speed_resolution = 0.02f;
+    m_device_metrics.m_maximum_speed = 3.0f;
 
     m_device_metrics.m_frame_rate = 5;
     m_device_metrics.m_adc_samplerate_hz = 1000000;

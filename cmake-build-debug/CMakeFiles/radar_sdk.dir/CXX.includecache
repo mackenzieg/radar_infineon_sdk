@@ -24,20 +24,6 @@ stdio.h
 ifxRadar_Vector.h
 ../externals/radar_sdk/include/ifxRadar_Vector.h
 
-../externals/radar_sdk/include/ifxRadar_Frame.h
-stdint.h
--
-ifxRadar_Matrix.h
-../externals/radar_sdk/include/ifxRadar_Matrix.h
-
-../externals/radar_sdk/include/ifxRadar_MTI.h
-ifxRadar_Error.h
-../externals/radar_sdk/include/ifxRadar_Error.h
-ifxRadar_Types.h
-../externals/radar_sdk/include/ifxRadar_Types.h
-ifxRadar_Vector.h
-../externals/radar_sdk/include/ifxRadar_Vector.h
-
 ../externals/radar_sdk/include/ifxRadar_Math.h
 ifxRadar_Types.h
 ../externals/radar_sdk/include/ifxRadar_Types.h
@@ -55,10 +41,6 @@ ifxRadar_Vector.h
 ../externals/radar_sdk/include/ifxRadar_Vector.h
 ifxRadar_Types.h
 ../externals/radar_sdk/include/ifxRadar_Types.h
-
-../externals/radar_sdk/include/ifxRadar_PeakSearch.h
-ifxRadar_Vector.h
-../externals/radar_sdk/include/ifxRadar_Vector.h
 
 ../externals/radar_sdk/include/ifxRadar_PreprocessedFFT.h
 stdint.h
@@ -110,22 +92,6 @@ ifxRadar_Error.h
 ifxRadar_Vector.h
 ../externals/radar_sdk/include/ifxRadar_Vector.h
 
-../include/dsp.hpp
-ifxRadar_RangeSpectrum.h
-../include/ifxRadar_RangeSpectrum.h
-ifxRadar_MTI.h
-../include/ifxRadar_MTI.h
-ifxRadar_Vector.h
-../include/ifxRadar_Vector.h
-ifxRadar_Matrix.h
-../include/ifxRadar_Matrix.h
-radar_config.hpp
-../include/radar_config.hpp
-ifxRadar_Frame.h
-../include/ifxRadar_Frame.h
-ifxRadar_PeakSearch.h
-../include/ifxRadar_PeakSearch.h
-
 ../include/radar_config.hpp
 ifxRadar_DeviceConfig.h
 ../include/ifxRadar_DeviceConfig.h
@@ -136,9 +102,7 @@ ifxRadar_Window.h
 ifxRadar_RangeSpectrum.h
 ../include/ifxRadar_RangeSpectrum.h
 
-/home/pi/Desktop/radar_infineon_sdk/src/dsp.cpp
-dsp.hpp
-/home/pi/Desktop/radar_infineon_sdk/src/dsp.hpp
-ifxRadar_Error.h
-/home/pi/Desktop/radar_infineon_sdk/src/ifxRadar_Error.h
+/home/pi/Desktop/radar_infineon_sdk/src/radar_config.cpp
+radar_config.hpp
+/home/pi/Desktop/radar_infineon_sdk/src/radar_config.hpp
 
