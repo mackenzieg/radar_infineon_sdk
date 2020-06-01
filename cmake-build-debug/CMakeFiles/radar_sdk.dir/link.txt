@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/radar_sdk.dir/src/dsp.cpp.o CMakeFiles/radar_sdk.dir/src/main.cpp.o CMakeFiles/radar_sdk.dir/src/radar_config.cpp.o CMakeFiles/radar_sdk.dir/src/radar_control.cpp.o  -o radar_sdk ../externals/radar_sdk/lib/libradar_sdk.a 
