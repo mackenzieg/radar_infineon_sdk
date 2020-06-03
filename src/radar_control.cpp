@@ -2,17 +2,12 @@
 
 radar_control::radar_control(radar_config* rc) : m_radar_config(rc)
 {
-    printf("Configuring device\n");
     // Create device handle
-    if (ifx_device_create(m_radar_config->get_device_config(), &m_device_handle))
-    {
-        //TODO implement error handling
-    }
+    ifx_Error_t ret = ifx_device_create(m_radar_config->get_device_config(), &m_device_handle);
+
     // Allow SDK to create a frame
-    if (ifx_device_create_frame_from_device_handle(m_device_handle, &m_frame))
-    {
-        // TODO implement error handling
-    }
+    ret = ifx_device_create_frame_from_device_handle(m_device_handle, &m_frame);
+
 }
 
 radar_control::~radar_control()
