@@ -4,7 +4,8 @@
 
 #include <math.h>
 
-dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config)
+dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config) : num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
+dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config) : num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
     this->create_spectrum_handle();
     this->create_mti_handle();
@@ -87,13 +88,13 @@ void dsp::create_doppler_fft_handle()
 
     ifx_vector_create_c(m_radar_config->get_device_config()->num_chirps_per_frame * 2, &(this->m_doppler_fft.chirp_fft_result));
 
-    ifx_vector_create_c(m_radar_config->get_device_config()->num_chirps_per_frame, &(this->m_doppler_fft.doppler_data)));
+    ifx_vector_create_c(m_radar_config->get_device_config()->num_chirps_per_frame, &(this->m_doppler_fft.doppler_data));
 }
 
 void dsp::destroy_doppler_fft_handle()
 {
     ifx_vector_destroy_c(&(this->m_doppler_fft.chirp_fft_result));
-    fx_vector_destroy_c(&(this->m_doppler_fft.doppler_data));
+    ifx_vector_destroy_c(&(this->m_doppler_fft.doppler_data));
     ifx_fft_destroy(this->m_doppler_fft.doppler_fft_handle);
 }
 
@@ -101,6 +102,8 @@ void dsp::destroy_doppler_fft_handle()
 #include <fstream>
 #include <iomanip>
 using namespace std;
+
+#include <fftw.h>
 
 void dsp::run(ifx_Frame_t frame)
 {
@@ -112,16 +115,17 @@ void dsp::run(ifx_Frame_t frame)
     float min_range = m_radar_config->get_device_metrics()->m_minimum_range;
 
     ifx_Vector_R_t chirp_fft_result_abs;
-    ifx_vector_create_r(doppler_fft_size, &chirp_fft_result_abs);
+    ifx_Error_t ret = ifx_vector_create_r(m_radar_config->get_device_config()->num_chirps_per_frame * 2, &chirp_fft_result_abs);
 
     /* Create doppler window */
     ifx_Window_Config_t doppler_fft_window_config;
-    doppler_fft_window_config.type = WINDOW_CHEBYSHEV;
+    //doppler_fft_window_config.type = WINDOW_CHEBYSHEV;
+    doppler_fft_window_config.type = WINDOW_HANN;
     doppler_fft_window_config.size = m_radar_config->get_device_config()->num_chirps_per_frame;
     doppler_fft_window_config.at_dB = 60.0f;
 
     ifx_Vector_R_t doppler_fft_window;
-    ret = ifx_vector_create_r(doppler_fft_window_config.size, &doppler_fft_window);
+    ifx_vector_create_r(doppler_fft_window_config.size, &doppler_fft_window);
 
     ifx_window_init(&doppler_fft_window_config, &doppler_fft_window);
 
@@ -129,12 +133,14 @@ void dsp::run(ifx_Frame_t frame)
 
     /* Create peak search */
 
-    ifx_Peak_Search_Config_t fine_peak_search_config = {.value_per_bin = value_per_bin,
+    ifx_Peak_Search_Config_t fine_peak_search_config = {
+            .value_per_bin = value_per_bin,
             .search_zone_start = min_range,
             .search_zone_end = max_range,
             .threshold_factor = 1.5f,
             .threshold_offset = 0,
-            .max_num_peaks = 15};
+            .max_num_peaks = 15
+    };
 
     ifx_Peak_Search_Handle_t peak_search;
 
@@ -149,23 +155,11 @@ void dsp::run(ifx_Frame_t frame)
     /*************************************************************************************/
     ret = ifx_range_spectrum_run_r(this->m_range_spectrum.range_spectrum_handle, &rx_data, &(this->m_range_spectrum.fft_spectrum_result));
 
-    ofstream myfile;
-    myfile.open ("pre-mti.txt");
-
-
-    for (int i = 0; i < this->m_range_spectrum.fft_spectrum_result.length; ++i)
-    {
-        myfile << this->m_range_spectrum.fft_spectrum_result.data[i] << "\n";
-    }
-
-    myfile.close();
-
-
     ret = ifx_range_spectrum_get_fft_transformed_matrix(this->m_range_spectrum.range_spectrum_handle, &(this->m_range_spectrum.frame_fft_half_result));
 
     /**************************** Remove static object (MTI filter) ***********************/
     ifx_vector_copy_r(&(this->m_range_spectrum.fft_spectrum_result), 0,
-                      this->m_range_spectrum.fft_spectrum_result.length / 2, &(this->m_mti..));
+                      this->m_range_spectrum.fft_spectrum_result.length / 2, &(this->m_mti.mti_result));
 
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
@@ -184,7 +178,7 @@ void dsp::run(ifx_Frame_t frame)
     {
         ifx_Complex_t element;
         ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), midx, bin_number, &element);
-        doppler_data.data[midx] = element;
+        this->m_doppler_fft.doppler_data.data[midx] = element;
     }
 
     /*
@@ -192,10 +186,10 @@ void dsp::run(ifx_Frame_t frame)
      * 1. Multiply Scale
      * 2. Multiply Window
      */
-    for (uint32_t i = 0; i < this->m_doppler_fft.doppler_data.length; ++i)
-    {
-        this->m_doppler_fft.doppler_data.data[i] = ifx_complex_mul_scalar(this->m_doppler_fft.doppler_data.data[i], doppler_fft_window.data[i] * doppler_window_scale);
-    }
+//    for (uint32_t i = 0; i < this->m_doppler_fft.doppler_data.length; ++i)
+//    {
+//        this->m_doppler_fft.doppler_data.data[i] = ifx_complex_mul_scalar(this->m_doppler_fft.doppler_data.data[i], doppler_fft_window.data[i] * doppler_window_scale);
+//    }
 
     ifx_Complex_t mean = {0};
     ifx_math_get_mean_c(&(this->m_doppler_fft.doppler_data), &mean);
@@ -204,13 +198,15 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_fft_run_c(this->m_doppler_fft.doppler_fft_handle, &(this->m_doppler_fft.doppler_data), &(this->m_doppler_fft.chirp_fft_result));
 
-    fft_shift(&chirp_fft_result);
+    fft_shift(&(this->m_doppler_fft.chirp_fft_result));
 
     ifx_math_vector_abs_c(&(this->m_doppler_fft.chirp_fft_result), &chirp_fft_result_abs);
 
+    // Convert 100ps units to s
     double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
     freq_per_bin = (1 / freq_per_bin) / (m_radar_config->get_device_config()->num_chirps_per_frame);
 
+    ofstream myfile;
     myfile.open ("chirp-time.txt");
 
     for (int i = 0; i < chirp_fft_result_abs.length; ++i)
@@ -273,7 +269,7 @@ void dsp::run(ifx_Frame_t frame)
 //    }
 
     ret = ifx_peak_search_destroy(peak_search);
-    ifx_vector_destroy_r(&doppler_fft_window);
+    ret = ifx_vector_destroy_r(&doppler_fft_window);
 
 }
 

@@ -1,6 +1,8 @@
 #ifndef DSP_HPP
 #define DSP_HPP
 
+#define NUM_FFT_POINTS 4096
+
 #include "ifxRadar_RangeSpectrum.h"
 #include "ifxRadar_MTI.h"
 #include "ifxRadar_Vector.h"
@@ -45,7 +47,6 @@ class dsp
             ifx_Vector_C_t chirp_fft_result;
         } doppler_fft_t;
 
-
         range_spectrum_t m_range_spectrum;
 
         mti_t m_mti;
@@ -54,7 +55,17 @@ class dsp
 
         radar_config* m_radar_config;
 
+
         int run_count = 0;
+
+        /*
+         * Doppler FFT related variables
+         */
+        fftw_complex signal[NUM_FFT_POINTS];
+        fftw_complex result[NUM_FFT_POINTS];
+
+        int num_frames_per_fft;
+        int curr_frames_sampled = 0;
 
         void create_spectrum_handle();
         void destroy_spectrum_handle();
