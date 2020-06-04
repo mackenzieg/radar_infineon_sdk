@@ -1,7 +1,11 @@
 #ifndef DSP_HPP
 #define DSP_HPP
 
+#include <fftw3.h>
+
 #define NUM_FFT_POINTS 4096
+#define REAL 0
+#define IMAG 1
 
 #include "ifxRadar_RangeSpectrum.h"
 #include "ifxRadar_MTI.h"

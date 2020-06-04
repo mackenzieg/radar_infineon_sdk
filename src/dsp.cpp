@@ -4,8 +4,7 @@
 
 #include <math.h>
 
-dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config) : num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
-dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config) : num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
+dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
     this->create_spectrum_handle();
     this->create_mti_handle();
@@ -103,7 +102,6 @@ void dsp::destroy_doppler_fft_handle()
 #include <iomanip>
 using namespace std;
 
-#include <fftw.h>
 
 void dsp::run(ifx_Frame_t frame)
 {
@@ -196,77 +194,65 @@ void dsp::run(ifx_Frame_t frame)
 
     ifx_math_subtract_scalar_c(&(this->m_doppler_fft.doppler_data), mean, &(this->m_doppler_fft.doppler_data));
 
-    ret = ifx_fft_run_c(this->m_doppler_fft.doppler_fft_handle, &(this->m_doppler_fft.doppler_data), &(this->m_doppler_fft.chirp_fft_result));
+    int samples_per_frame = m_radar_config->get_device_config()->num_chirps_per_frame;
 
-    fft_shift(&(this->m_doppler_fft.chirp_fft_result));
-
-    ifx_math_vector_abs_c(&(this->m_doppler_fft.chirp_fft_result), &chirp_fft_result_abs);
-
-    // Convert 100ps units to s
-    double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
-    freq_per_bin = (1 / freq_per_bin) / (m_radar_config->get_device_config()->num_chirps_per_frame);
-
-    ofstream myfile;
-    myfile.open ("chirp-time.txt");
-
-    for (int i = 0; i < chirp_fft_result_abs.length; ++i)
+    int x = 0;
+    for (int i = (curr_frames_sampled * samples_per_frame); i < (curr_frames_sampled + 1) * samples_per_frame; ++i, ++x)
     {
-        myfile << std::setprecision(40) << chirp_fft_result_abs.data[i] << " ";
+        signal[i][REAL] = this->m_doppler_fft.doppler_data.data[x].data[REAL];
+        signal[i][IMAG] = this->m_doppler_fft.doppler_data.data[x].data[IMAG];
     }
 
-    myfile << "\n";
+    if (curr_frames_sampled != (num_frames_per_fft - 1))
+    {
+        ++curr_frames_sampled;
+        return;
+    }
 
-    myfile.close();
+    fftw_plan plan = fftw_plan_dft_1d(NUM_FFT_POINTS,
+                                      signal,
+                                      result,
+                                      FFTW_FORWARD,
+                                      FFTW_ESTIMATE);
 
-//    for (int i = 0; i < fine_peak_result.peak_count; ++i)
+    fftw_execute(plan);
+
+    double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
+    freq_per_bin = (1 / freq_per_bin) / (NUM_FFT_POINTS);
+
+    ofstream myfile;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+        cout << std::setprecision(40) << abs << " ";
+    }
+
+    cout << endl;
+
+    curr_frames_sampled = 0;
+
+//    ret = ifx_fft_run_c(this->m_doppler_fft.doppler_fft_handle, &(this->m_doppler_fft.doppler_data), &(this->m_doppler_fft.chirp_fft_result));
+//
+//    fft_shift(&(this->m_doppler_fft.chirp_fft_result));
+//
+//    ifx_math_vector_abs_c(&(this->m_doppler_fft.chirp_fft_result), &chirp_fft_result_abs);
+//
+//    // Convert 100ps units to s
+//    double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
+//    freq_per_bin = (1 / freq_per_bin) / (m_radar_config->get_device_config()->num_chirps_per_frame);
+//
+//    ofstream myfile;
+//    myfile.open ("chirp-time.txt");
+//
+//    for (int i = 0; i < chirp_fft_result_abs.length; ++i)
 //    {
-//        uint32_t pidx = fine_peak_result.index[i];
-//
-//        for (uint32_t midx = 0; midx < this->m_range_spectrum.frame_fft_half_result.rows; ++midx)
-//        {
-//            ifx_Complex_t element;
-//            ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), midx, pidx, &element);
-//            doppler_data.data[midx] = element;
-//        }
-//
-//        /* Remove mean */
-//        ifx_Complex_t mean = {0};
-//        ifx_math_get_mean_c(&doppler_data, &mean);
-//
-//        ifx_math_subtract_scalar_c(&doppler_data, mean, &doppler_data_remove_mean);
-//
-//        /*
-//         * Doppler windowing
-//         * 1. Multiply Scale
-//         * 2. Multiply Window
-//         */
-//        for (uint32_t i = 0; i < doppler_data.length; ++i)
-//        {
-//            doppler_data.data[i] = ifx_complex_mul_scalar(doppler_data_remove_mean.data[i], doppler_fft_window.data[i] * doppler_window_scale);
-//        }
-//
-//        ret = ifx_fft_run_c(doppler_fft_handle, &doppler_data_remove_mean, &chirp_fft_result);
-//
-//        fft_shift(&chirp_fft_result);
-//
-//        /* Remove mean */
-//        ifx_math_get_mean_c(&chirp_fft_result, &mean);
-//
-//        ifx_math_subtract_scalar_c(&chirp_fft_result, mean, &chirp_fft_result);
-//
-//        ifx_math_vector_abs_c(&chirp_fft_result, &chirp_fft_result_abs);
-//
-//        // Convert 100ps units to s
-//        double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
-//        freq_per_bin = (1 / freq_per_bin) / (m_radar_config->get_device_config()->num_chirps_per_frame);
-//
-//        for (int x = 0; x < chirp_fft_result_abs.length; ++x)
-//        {
-//            printf("%a, ", chirp_fft_result_abs.data);
-//        }
-//
-//        printf("\n");
+//        myfile << std::setprecision(40) << chirp_fft_result_abs.data[i] << " ";
 //    }
+//
+//    myfile << "\n";
+//
+//    myfile.close();
 
     ret = ifx_peak_search_destroy(peak_search);
     ret = ifx_vector_destroy_r(&doppler_fft_window);
