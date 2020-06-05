@@ -100,6 +100,8 @@ void dsp::destroy_doppler_fft_handle()
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+
+#include <chrono>
 using namespace std;
 
 
@@ -161,8 +163,8 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
-    // Give MTI filter 5 runs to remove clutter
-    if (this->run_count < 4)
+    // Give MTI filter time to train against clutter
+    if (this->run_count <= MTI_FILTER_TRAIN_FRAMES)
     {
         return;
     }
@@ -194,20 +196,33 @@ void dsp::run(ifx_Frame_t frame)
 
     ifx_math_subtract_scalar_c(&(this->m_doppler_fft.doppler_data), mean, &(this->m_doppler_fft.doppler_data));
 
-    int samples_per_frame = m_radar_config->get_device_config()->num_chirps_per_frame;
+    uint32_t samples_per_frame = m_radar_config->get_device_config()->num_chirps_per_frame;
+    uint32_t fft_to_sample_ratio = NUM_FFT_POINTS / samples_per_frame;
 
-    int x = 0;
-    for (int i = (curr_frames_sampled * samples_per_frame); i < (curr_frames_sampled + 1) * samples_per_frame; ++i, ++x)
+    if (this->run_count - MTI_FILTER_TRAIN_FRAMES > fft_to_sample_ratio)
     {
-        signal[i][REAL] = this->m_doppler_fft.doppler_data.data[x].data[REAL];
-        signal[i][IMAG] = this->m_doppler_fft.doppler_data.data[x].data[IMAG];
+        this->insert_new_sample(&(this->m_doppler_fft.doppler_data));
+    } else {
+
+        uint32_t x = 0;
+        for (uint32_t i = (curr_frames_sampled * samples_per_frame);
+             i < (curr_frames_sampled + 1) * samples_per_frame; ++i, ++x) {
+            signal[i][REAL] = this->m_doppler_fft.doppler_data.data[x].data[REAL];
+            signal[i][IMAG] = this->m_doppler_fft.doppler_data.data[x].data[IMAG];
+        }
+        if (curr_frames_sampled != (num_frames_per_fft - 1)) {
+            ++curr_frames_sampled;
+            return;
+        }
     }
 
-    if (curr_frames_sampled != (num_frames_per_fft - 1))
+    for (int i = 0; i < NUM_FFT_POINTS; ++i)
     {
-        ++curr_frames_sampled;
-        return;
+        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+        cout << std::setprecision(40) << abs << " ";
     }
+
+    cout << endl;
 
     fftw_plan plan = fftw_plan_dft_1d(NUM_FFT_POINTS,
                                       signal,
@@ -217,46 +232,48 @@ void dsp::run(ifx_Frame_t frame)
 
     fftw_execute(plan);
 
+    fftw_destroy_plan(plan);
+
     double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
     freq_per_bin = (1 / freq_per_bin) / (NUM_FFT_POINTS);
 
     ofstream myfile;
 
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < NUM_FFT_POINTS; ++i)
     {
-        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+        float abs = sqrt(result[i][REAL] * result[i][REAL] + result[i][IMAG] * result[i][IMAG]);
         cout << std::setprecision(40) << abs << " ";
     }
 
     cout << endl;
 
-    curr_frames_sampled = 0;
-
-//    ret = ifx_fft_run_c(this->m_doppler_fft.doppler_fft_handle, &(this->m_doppler_fft.doppler_data), &(this->m_doppler_fft.chirp_fft_result));
-//
-//    fft_shift(&(this->m_doppler_fft.chirp_fft_result));
-//
-//    ifx_math_vector_abs_c(&(this->m_doppler_fft.chirp_fft_result), &chirp_fft_result_abs);
-//
-//    // Convert 100ps units to s
-//    double freq_per_bin = ((double)m_radar_config->get_device_config()->chirp_to_chirp_time_100ps) / pow(10 , 10);
-//    freq_per_bin = (1 / freq_per_bin) / (m_radar_config->get_device_config()->num_chirps_per_frame);
-//
-//    ofstream myfile;
-//    myfile.open ("chirp-time.txt");
-//
-//    for (int i = 0; i < chirp_fft_result_abs.length; ++i)
-//    {
-//        myfile << std::setprecision(40) << chirp_fft_result_abs.data[i] << " ";
-//    }
-//
-//    myfile << "\n";
-//
-//    myfile.close();
-
     ret = ifx_peak_search_destroy(peak_search);
     ret = ifx_vector_destroy_r(&doppler_fft_window);
 
+    time_stamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+    //cout << time_stamp << endl;
+}
+
+void dsp::insert_new_sample(ifx_Vector_C_t* new_sample)
+{
+    int samples_per_frame = new_sample->length;
+
+    int fft_to_sample_ratio = NUM_FFT_POINTS / samples_per_frame;
+
+    int x = 0;
+    for (int i = (1 * samples_per_frame); i < NUM_FFT_POINTS; ++i, ++x)
+    {
+        signal[x][REAL] = signal[i][REAL];
+        signal[x][IMAG] = signal[i][IMAG];
+    }
+
+    x = 0;
+    for (int i = ((fft_to_sample_ratio - 1) * samples_per_frame - 1); i < NUM_FFT_POINTS; ++i, ++x)
+    {
+        signal[i][REAL] = new_sample->data[x].data[REAL];
+        signal[i][IMAG] = new_sample->data[x].data[IMAG];
+    }
 }
 
 float dsp::create_scale(ifx_Vector_R_t* win)

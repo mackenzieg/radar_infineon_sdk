@@ -3,7 +3,8 @@
 
 #include <fftw3.h>
 
-#define NUM_FFT_POINTS 4096
+#define NUM_FFT_POINTS 1024
+#define MTI_FILTER_TRAIN_FRAMES 5
 #define REAL 0
 #define IMAG 1
 
@@ -59,6 +60,7 @@ class dsp
 
         radar_config* m_radar_config;
 
+        unsigned long int time_stamp;
 
         int run_count = 0;
 
@@ -85,6 +87,8 @@ class dsp
 
         float create_scale(ifx_Vector_R_t* win);
         void fft_shift(ifx_Vector_C_t* vector);
+
+        void insert_new_sample(ifx_Vector_C_t* new_sample);
 };
 
 #endif // DSP_HPP
