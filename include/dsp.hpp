@@ -3,7 +3,7 @@
 
 #include <fftw3.h>
 
-#define NUM_FFT_POINTS 1024
+#define NUM_FFT_POINTS 1200
 #define MTI_FILTER_TRAIN_FRAMES 5
 #define REAL 0
 #define IMAG 1
