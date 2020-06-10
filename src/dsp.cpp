@@ -6,6 +6,9 @@
 
 dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
+    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
+    m_mti_test_handle = new mti(m_radar_config, NUM_FFT_POINTS, bin_number - 1, bin_number + 1);
+
     this->create_spectrum_handle();
     this->create_mti_handle();
     this->create_doppler_fft_handle();
@@ -13,6 +16,7 @@ dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_
 
 dsp::~dsp()
 {
+    delete m_mti_test_handle;
     this->destroy_spectrum_handle();
     this->destroy_mti_handle();
     this->destroy_doppler_fft_handle();
@@ -172,7 +176,14 @@ void dsp::run(ifx_Frame_t frame)
     ret = ifx_peak_search_run(peak_search, &(this->m_mti.mti_result), &fine_peak_result);
 
     // bin number for 0.5 m
-    uint32_t bin_number = (uint32_t) (0.45f / m_radar_config->get_device_metrics()->m_value_per_bin);
+    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
+    //bin_number = 5;
+    //uint32_t bin_number = last_peak_detected;
+//    if (last_peak_detected == -1)
+//    {
+//        last_peak_detected = fine_peak_result.index[0];
+//    }
+
     //uint32_t bin_number = fine_peak_result.index[0];
 //
 //    ifx_Complex_t avg;
@@ -189,6 +200,8 @@ void dsp::run(ifx_Frame_t frame)
 //    avg.data[REAL] /= this->m_range_spectrum.frame_fft_half_result.rows;
 //    avg.data[IMAG] /= this->m_range_spectrum.frame_fft_half_result.rows;
 
+    m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
+
     ifx_Complex_t element;
     ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, bin_number, &element);
 
@@ -203,14 +216,6 @@ void dsp::run(ifx_Frame_t frame)
 
     curr_frames_sampled = 0;
 
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-    {
-        //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
-        float abs = signal[i][REAL];
-        cout << std::setprecision(40) << abs << " ";
-    }
-
-    cout << endl;
 
     // Windowing
 //    for (int i = 0; i < NUM_FFT_POINTS; ++i)
@@ -234,6 +239,15 @@ void dsp::run(ifx_Frame_t frame)
         signal[i][REAL] -= avg_real;
         signal[i][IMAG] -= avg_imag;
     }
+
+    for (int i = 0; i < NUM_FFT_POINTS; ++i)
+    {
+        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+        //float abs = signal[i][REAL];
+        cout << std::setprecision(40) << abs << " ";
+    }
+
+    cout << endl;
 
     ofstream myfile;
     myfile.open("pre-fft.txt");

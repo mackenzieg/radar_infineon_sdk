@@ -1,9 +1,11 @@
 #ifndef DSP_HPP
 #define DSP_HPP
 
+
+#define NUM_FFT_POINTS 2048
+
 #include <fftw3.h>
 
-#define NUM_FFT_POINTS 1200
 #define MTI_FILTER_TRAIN_FRAMES 5
 #define REAL 0
 #define IMAG 1
@@ -12,9 +14,11 @@
 #include "ifxRadar_MTI.h"
 #include "ifxRadar_Vector.h"
 #include "ifxRadar_Matrix.h"
-#include "radar_config.hpp"
 #include "ifxRadar_Frame.h"
 #include "ifxRadar_PeakSearch.h"
+
+#include "mti.hpp"
+#include "radar_config.hpp"
 
 class dsp
 {
@@ -56,6 +60,8 @@ class dsp
 
         mti_t m_mti;
 
+        mti* m_mti_test_handle;
+
         doppler_fft_t m_doppler_fft;
 
         radar_config* m_radar_config;
@@ -63,6 +69,8 @@ class dsp
         unsigned long int time_stamp;
 
         int run_count = 0;
+
+        int last_peak_detected = -1;
 
         /*
          * Doppler FFT related variables

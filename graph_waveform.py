@@ -19,9 +19,9 @@ x_vals = range(len(y_vals))
 
 plt.plot(x_vals, y_vals, label='un1filtered')
 
-sample_rate = 120
+sample_rate = 64
 order = 10
-cutoff = 1.2
+cutoff = 2
 
 y_vals = butter_lowpass_filter(y_vals, cutoff, sample_rate, order)
 
