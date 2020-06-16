@@ -1,9 +1,11 @@
 #ifndef FFT_CIRCULAR_HPP
 #define FFT_CIRCULAR_HPP
 
-#define NUM_FFT_POINTS 2048
+#define NUM_FFT_POINTS 512
 
 #include <fftw3.h>
+
+#include "ifxRadar_Vector.h"
 
 class fft_circular {
     public:
@@ -12,11 +14,12 @@ class fft_circular {
 
         void sample(ifx_Complex_t element);
 
-        fftw_complex get_result();
+        fftw_complex* get_signal();
+        fftw_complex* get_result();
     protected:
     private:
-        fftw_complex signal[NUM_FFT_POINTS];
-        fftw_complex result[NUM_FFT_POINTS];
+        fftw_complex* signal;
+        fftw_complex* result;
 
         fftw_plan plan;
 
@@ -24,6 +27,5 @@ class fft_circular {
 
         bool result_valid = false;
 };
-
 
 #endif //FFT_CIRCULAR_HPP

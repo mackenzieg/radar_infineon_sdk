@@ -46,6 +46,8 @@ void mti::train(ifx_Matrix_C_t* range_fft)
     }
 }
 
+#include <iostream>
+
 void mti::train_average(ifx_Matrix_C_t* range_fft)
 {
     this->train(range_fft);
@@ -64,6 +66,8 @@ void mti::train_average(ifx_Matrix_C_t* range_fft)
 
         avg_real /= m_buffer_length;
         avg_imag /= m_buffer_length;
+
+        //std::cout << avg_real << std::endl;
 
         ifx_Complex_t element;
 

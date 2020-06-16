@@ -1,14 +1,7 @@
 #ifndef DSP_HPP
 #define DSP_HPP
 
-
-#define NUM_FFT_POINTS 2048
-
-#include <fftw3.h>
-
 #define MTI_FILTER_TRAIN_FRAMES 5
-#define REAL 0
-#define IMAG 1
 
 #include "ifxRadar_RangeSpectrum.h"
 #include "ifxRadar_MTI.h"
@@ -19,6 +12,16 @@
 
 #include "mti.hpp"
 #include "radar_config.hpp"
+#include "fft_circular.hpp"
+
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+#include <chrono>
+using namespace std;
+
+#include <string>
 
 class dsp
 {
@@ -60,6 +63,7 @@ class dsp
 
         mti_t m_mti;
 
+        uint32_t mti_buffer_length;
         mti* m_mti_test_handle;
 
         doppler_fft_t m_doppler_fft;
@@ -68,15 +72,23 @@ class dsp
 
         unsigned long int time_stamp;
 
-        int run_count = 0;
+        long unsigned int run_count = 0;
 
-        int last_peak_detected = -1;
+        uint32_t min_bin;
+        uint32_t max_bin;
+        uint32_t delta_bin;
+        uint32_t important_bin;
 
         /*
          * Doppler FFT related variables
          */
-        fftw_complex signal[NUM_FFT_POINTS];
-        fftw_complex result[NUM_FFT_POINTS];
+        fft_circular* fft_handle;
+
+        string file_name;
+
+        ofstream data_file;
+
+        float range_interest = 1.9f;
 
         int num_frames_per_fft;
         int curr_frames_sampled = 0;
@@ -97,6 +109,8 @@ class dsp
         void fft_shift(ifx_Vector_C_t* vector);
 
         void insert_new_sample(ifx_Vector_C_t* new_sample);
+
+        void print_complex(fftw_complex *signal, ofstream &location);
 };
 
 #endif // DSP_HPP

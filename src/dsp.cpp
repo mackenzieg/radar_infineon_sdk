@@ -6,8 +6,45 @@
 
 dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
-    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
-    m_mti_test_handle = new mti(m_radar_config, NUM_FFT_POINTS, bin_number - 1, bin_number + 1);
+    important_bin = (uint32_t) (range_interest / m_radar_config->get_device_metrics()->m_value_per_bin);
+
+    ofstream metrics_file;
+    metrics_file.open ("metrics.txt");
+
+    metrics_file << "range_resolution: " << m_radar_config->get_device_metrics()->m_range_resolution << endl;
+    metrics_file << "range_interest: " << range_interest << endl;
+    metrics_file << "bin_interest: " << important_bin << endl;
+
+    for (int i = 0; i < NUM_FFT_POINTS; ++i)
+    {
+        metrics_file <<  ((float)i) * (1/ ((float)m_radar_config->get_device_metrics()->m_frame_rate)) ;
+        if (i < NUM_FFT_POINTS - 1)
+        {
+            metrics_file << ", ";
+        }
+    }
+    metrics_file << endl;
+
+    metrics_file.close();
+
+    int range = 3;
+
+    if (((int)important_bin) - range < 0)
+    {
+        min_bin = 0;
+    } else {
+        min_bin = important_bin - ((uint32_t)range);
+    }
+    max_bin = important_bin + range;
+    delta_bin = max_bin - min_bin + 1;
+
+    mti_buffer_length = m_radar_config->get_device_metrics()->m_frame_rate * 4;
+
+    m_mti_test_handle = new mti(m_radar_config, mti_buffer_length, min_bin, max_bin);
+    fft_handle = new fft_circular[delta_bin];
+
+    data_file.open ("data.txt");
+
 
     this->create_spectrum_handle();
     this->create_mti_handle();
@@ -17,9 +54,12 @@ dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_
 dsp::~dsp()
 {
     delete m_mti_test_handle;
+    delete[] fft_handle;
     this->destroy_spectrum_handle();
     this->destroy_mti_handle();
     this->destroy_doppler_fft_handle();
+
+    data_file.close();
 }
 
 void dsp::create_spectrum_handle()
@@ -101,14 +141,6 @@ void dsp::destroy_doppler_fft_handle()
     ifx_fft_destroy(this->m_doppler_fft.doppler_fft_handle);
 }
 
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-#include <chrono>
-using namespace std;
-
-
 void dsp::run(ifx_Frame_t frame)
 {
     this->run_count += 1;
@@ -167,155 +199,113 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
+    m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
+
     // Give MTI filter time to train against clutter
-    if (this->run_count <= MTI_FILTER_TRAIN_FRAMES)
+    if (this->run_count <= mti_buffer_length)
     {
         return;
+    } else if(this->run_count == mti_buffer_length + 1) {
+        cout << "Completed Calibration" << endl;
     }
 
     ret = ifx_peak_search_run(peak_search, &(this->m_mti.mti_result), &fine_peak_result);
 
-    // bin number for 0.5 m
-    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
-    //bin_number = 5;
-    //uint32_t bin_number = last_peak_detected;
-//    if (last_peak_detected == -1)
-//    {
-//        last_peak_detected = fine_peak_result.index[0];
-//    }
-
-    //uint32_t bin_number = fine_peak_result.index[0];
-//
-//    ifx_Complex_t avg;
-//    avg.data[REAL] = 0.0f;
-//    avg.data[IMAG] = 0.0f;
-//    for (uint32_t midx = 0; midx < this->m_range_spectrum.frame_fft_half_result.rows; ++midx)
-//    {
-//        ifx_Complex_t element;
-//        ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), midx, bin_number, &element);
-//        avg.data[REAL] += element.data[REAL];
-//        avg.data[IMAG] += element.data[IMAG];
-//    }
-//
-//    avg.data[REAL] /= this->m_range_spectrum.frame_fft_half_result.rows;
-//    avg.data[IMAG] /= this->m_range_spectrum.frame_fft_half_result.rows;
-
-    m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
-
-    ifx_Complex_t element;
-    ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, bin_number, &element);
-
-    signal[curr_frames_sampled][REAL] = element.data[REAL];
-    signal[curr_frames_sampled][IMAG] = element.data[IMAG];
-
-    if (curr_frames_sampled != NUM_FFT_POINTS - 1)
+    int x = 0;
+    for (int i = min_bin; i <= max_bin; ++i, ++x)
     {
-        ++curr_frames_sampled;
-        return;
+        ifx_Complex_t element;
+        ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, i, &element);
+        fft_handle[x].sample(element);
     }
 
-    curr_frames_sampled = 0;
 
-
-    // Windowing
-//    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-//    {
-//        signal[i][REAL] *= doppler_fft_window.data[i] * doppler_window_scale;
-//        signal[i][IMAG] *= doppler_fft_window.data[i] * doppler_window_scale;
-//    }
-
-    double avg_real = 0.0;
-    double avg_imag = 0.0;
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
+    uint32_t curr_bin = min_bin;
+    for (int i = 0; i < delta_bin; ++i, ++ curr_bin)
     {
-        avg_real += signal[i][REAL];
-        avg_imag += signal[i][IMAG];
-    }
-    avg_real /= NUM_FFT_POINTS;
-    avg_imag /= NUM_FFT_POINTS;
 
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-    {
-        signal[i][REAL] -= avg_real;
-        signal[i][IMAG] -= avg_imag;
-    }
+        fftw_complex* result = fft_handle[i].get_result();
+        if (result == nullptr)
+        {
+            return;
+        }
+        fftw_complex* signal = fft_handle[i].get_signal();
 
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-    {
-        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
-        //float abs = signal[i][REAL];
-        cout << std::setprecision(40) << abs << " ";
-    }
+        data_file << "curr_bin: " << curr_bin << endl;
+        data_file << "real: " << curr_bin << endl;
 
-    cout << endl;
+        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+        {
+            float abs = signal[i][REAL];
+            //float abs = signal[i][REAL];
+            data_file << std::setprecision(40) << abs;
 
-    ofstream myfile;
-    myfile.open("pre-fft.txt");
+            if (i < NUM_FFT_POINTS - 1)
+            {
+                data_file << ", ";
+            }
+        }
+        data_file << endl;
+        data_file << "imag: " << curr_bin << endl;
 
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-    {
-        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
-        myfile << std::setprecision(40) << abs << " ";
-    }
+        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+        {
+            //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+            float abs = signal[i][IMAG];
 
-    myfile << endl;
+            data_file << std::setprecision(40) << abs;
 
-    myfile.close();
-
-    fftw_plan plan = fftw_plan_dft_1d(NUM_FFT_POINTS,
-                                      signal,
-                                      result,
-                                      FFTW_FORWARD,
-                                      FFTW_ESTIMATE);
-
-    fftw_execute(plan);
-
-    fftw_destroy_plan(plan);
-
-    double freq_per_bin = ((double)m_radar_config->get_device_config()->frame_period_us) / pow(10 , 6);
-    freq_per_bin = (1 / freq_per_bin) / (NUM_FFT_POINTS);
-
-    myfile.open("fft.txt");
-
-    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-    {
-        float abs = sqrt(result[i][REAL] * result[i][REAL] + result[i][IMAG] * result[i][IMAG]);
-        myfile << std::setprecision(40) << abs << " ";
-        cout << std::setprecision(40) << abs << " ";
+            if (i < NUM_FFT_POINTS - 1)
+            {
+                data_file << ", ";
+            }
+        }
+        data_file << endl;
     }
 
-    myfile << endl;
-    cout << endl;
+    double slow_time_sample_time = ((double)m_radar_config->get_device_config()->frame_period_us) / pow(10 , 6);
+    double freq_per_bin = 1 / (slow_time_sample_time * NUM_FFT_POINTS);
 
-    myfile.close();
+    uint32_t slow_time_min_bin = 1;
+    uint32_t slow_time_max_bin = ceil(1.0 / freq_per_bin);
+
+    for (int i = 0; i < delta_bin; ++i)
+    {
+        fftw_complex* result = fft_handle[i].get_result();
+
+        float max = 0.0f;
+        uint32_t max_index = 0;
+        for (int i = slow_time_min_bin; i <= slow_time_max_bin; ++i)
+        {
+            float abs = sqrt(result[i][REAL] * result[i][REAL] + result[i][IMAG] * result[i][IMAG]);
+            if (abs >= max)
+            {
+                max = abs;
+                max_index = i;
+            }
+        }
+        cout << (max_index * freq_per_bin) << endl;
+    }
+    cout << "-------------------------------" << endl;
 
     ret = ifx_peak_search_destroy(peak_search);
     ret = ifx_vector_destroy_r(&doppler_fft_window);
 
     time_stamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
-    //cout << time_stamp << endl;
+    cout << time_stamp << endl;
+
+    cout << "-------------------------------" << endl;
 }
 
-void dsp::insert_new_sample(ifx_Vector_C_t* new_sample)
+void dsp::print_complex(fftw_complex* signal, ofstream &location)
 {
-    int samples_per_frame = new_sample->length;
-
-    int fft_to_sample_ratio = NUM_FFT_POINTS / samples_per_frame;
-
-    int x = 0;
-    for (int i = (1 * samples_per_frame); i < NUM_FFT_POINTS; ++i, ++x)
+    for (int i = 0; i < NUM_FFT_POINTS; ++i)
     {
-        signal[x][REAL] = signal[i][REAL];
-        signal[x][IMAG] = signal[i][IMAG];
+        float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+        location << std::setprecision(40) << abs << " ";
     }
-
-    x = 0;
-    for (int i = ((fft_to_sample_ratio - 1) * samples_per_frame - 1); i < NUM_FFT_POINTS; ++i, ++x)
-    {
-        signal[i][REAL] = new_sample->data[x].data[REAL];
-        signal[i][IMAG] = new_sample->data[x].data[IMAG];
-    }
+    location << endl;
 }
 
 float dsp::create_scale(ifx_Vector_R_t* win)

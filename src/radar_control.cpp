@@ -2,7 +2,6 @@
 
 radar_control::radar_control(radar_config* rc) : m_radar_config(rc)
 {
-    // Create device handle
     ifx_Error_t ret = ifx_device_create(m_radar_config->get_device_config(), &m_device_handle);
 
     // Allow SDK to create a frame

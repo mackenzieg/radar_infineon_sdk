@@ -14,6 +14,12 @@
 #include <windows.h>
 #endif
 
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
 void sleep_ms(int sleepMs)
 {
 #ifdef LINUX
@@ -36,30 +42,28 @@ void signal_handle(int sig)
 
 int main(int argc, char** argv)
 {
-    printf("Starting\n");
-
     signal(SIGINT, signal_handle);
 
-	printf("Running Radar SDK version: %s\n", ifx_radar_sdk_get_version_string());
+    cout << "Running Radar SDK version: " << ifx_radar_sdk_get_version_string() << endl;
+
+    cout << "Creating device handle and dsp chain" << endl;
 
     radar_config rc;
 
     radar_control radar_control(&rc);
 
-    printf("Creating device handle and dsp processing chain\n");
     dsp dsp(&rc);
 
-    sleep_ms(1000);
-
-    printf("Starting DSP process\n");
+    cout << "Starting Calibration" << endl;
 
     ifx_Error_t ret = IFX_OK;
 	while (running)
     {
         ret = radar_control.pull_frame();
-        // TODO check for buffer overflow instead of everything
-        if (ret == IFX_ERROR_FIFO_OVERFLOW)
+
+        if (ret != IFX_OK)
         {
+            cout << "Waiting" << endl;
             continue;
         }
 
@@ -68,7 +72,7 @@ int main(int argc, char** argv)
         dsp.run(frame);
     }
 
-    printf("Closing connection\n");
+	cout << "Closing connection" << endl;
 
     return 0;
 }
