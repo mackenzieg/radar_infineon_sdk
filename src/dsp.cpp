@@ -6,7 +6,9 @@
 
 dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
-    important_bin = (uint32_t) (range_interest / m_radar_config->get_device_metrics()->m_value_per_bin);
+    float temp_bin = (range_interest / m_radar_config->get_device_metrics()->m_value_per_bin);
+
+    important_bin = (uint32_t) (temp_bin + 0.5f);
 
     ofstream metrics_file;
     metrics_file.open ("metrics.txt");
@@ -27,7 +29,7 @@ dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_
 
     metrics_file.close();
 
-    int range = 3;
+    int range = 4;
 
     if (((int)important_bin) - range < 0)
     {
@@ -44,7 +46,6 @@ dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_
     fft_handle = new fft_circular[delta_bin];
 
     data_file.open ("data.txt");
-
 
     this->create_spectrum_handle();
     this->create_mti_handle();
@@ -199,7 +200,7 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
-    m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
+    //m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
 
     // Give MTI filter time to train against clutter
     if (this->run_count <= mti_buffer_length)
@@ -211,17 +212,47 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_peak_search_run(peak_search, &(this->m_mti.mti_result), &fine_peak_result);
 
-    int x = 0;
-    for (int i = min_bin; i <= max_bin; ++i, ++x)
+    uint32_t x = 0;
+    for (uint32_t i = min_bin; i <= max_bin; ++i, ++x)
     {
         ifx_Complex_t element;
         ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, i, &element);
         fft_handle[x].sample(element);
     }
 
+    fftw_complex* result = fft_handle[0].get_result();
+    if (result == nullptr)
+    {
+        return;
+    }
+
+    for (uint32_t x = 0; x < NUM_FFT_POINTS; ++x)
+    {
+        integrated[x][REAL] = 0.0f;
+        integrated[x][IMAG] = 0.0f;
+
+        uint32_t curr_bin = min_bin;
+        for (uint32_t i = 0; i < delta_bin; ++i, ++ curr_bin)
+        {
+            fftw_complex* signal = fft_handle[i].get_signal();
+
+            integrated[x][REAL] += signal[x][REAL];
+            integrated[x][IMAG] += signal[x][IMAG];
+        }
+    }
+
+    for (uint32_t i = 0; i < NUM_FFT_POINTS; ++i)
+    {
+        cout << integrated[i][REAL];
+        if (i < NUM_FFT_POINTS - 1)
+        {
+            cout << std::setprecision(40) << ", ";
+        }
+    }
+    cout << endl;
 
     uint32_t curr_bin = min_bin;
-    for (int i = 0; i < delta_bin; ++i, ++ curr_bin)
+    for (uint32_t i = 0; i < delta_bin; ++i, ++ curr_bin)
     {
 
         fftw_complex* result = fft_handle[i].get_result();
@@ -231,61 +262,70 @@ void dsp::run(ifx_Frame_t frame)
         }
         fftw_complex* signal = fft_handle[i].get_signal();
 
-        data_file << "curr_bin: " << curr_bin << endl;
-        data_file << "real: " << curr_bin << endl;
 
-        for (int i = 0; i < NUM_FFT_POINTS; ++i)
-        {
-            float abs = signal[i][REAL];
-            //float abs = signal[i][REAL];
-            data_file << std::setprecision(40) << abs;
 
-            if (i < NUM_FFT_POINTS - 1)
-            {
-                data_file << ", ";
-            }
-        }
-        data_file << endl;
-        data_file << "imag: " << curr_bin << endl;
-
-        for (int i = 0; i < NUM_FFT_POINTS; ++i)
-        {
-            //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
-            float abs = signal[i][IMAG];
-
-            data_file << std::setprecision(40) << abs;
-
-            if (i < NUM_FFT_POINTS - 1)
-            {
-                data_file << ", ";
-            }
-        }
-        data_file << endl;
+//        fftw_complex* result = fft_handle[i].get_result();
+//        if (result == nullptr)
+//        {
+//            return;
+//        }
+//        fftw_complex* signal = fft_handle[i].get_signal();
+//
+//        data_file << "curr_bin: " << curr_bin << endl;
+//        data_file << "real: " << curr_bin << endl;
+//
+//        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+//        {
+//            float abs = signal[i][REAL];
+//            //float abs = signal[i][REAL];
+//            data_file << std::setprecision(40) << abs;
+//
+//            if (i < NUM_FFT_POINTS - 1)
+//            {
+//                data_file << ", ";
+//            }
+//        }
+//        data_file << endl;
+//        data_file << "imag: " << curr_bin << endl;
+//
+//        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+//        {
+//            //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+//            float abs = signal[i][IMAG];
+//
+//            data_file << std::setprecision(40) << abs;
+//
+//            if (i < NUM_FFT_POINTS - 1)
+//            {
+//                data_file << ", ";
+//            }
+//        }
+//        data_file << endl;
     }
 
-    double slow_time_sample_time = ((double)m_radar_config->get_device_config()->frame_period_us) / pow(10 , 6);
-    double freq_per_bin = 1 / (slow_time_sample_time * NUM_FFT_POINTS);
-
-    uint32_t slow_time_min_bin = 1;
-    uint32_t slow_time_max_bin = ceil(1.0 / freq_per_bin);
-
-    for (int i = 0; i < delta_bin; ++i)
-    {
-        fftw_complex* result = fft_handle[i].get_result();
-
-        float max = 0.0f;
-        uint32_t max_index = 0;
-        for (int i = slow_time_min_bin; i <= slow_time_max_bin; ++i)
-        {
-            float abs = sqrt(result[i][REAL] * result[i][REAL] + result[i][IMAG] * result[i][IMAG]);
-            if (abs >= max)
-            {
-                max = abs;
-                max_index = i;
-            }
-        }
-        cout << (max_index * freq_per_bin) << endl;
-    }
+//    double slow_time_sample_time = ((double)m_radar_config->get_device_config()->frame_period_us) / pow(10 , 6);
+//    double freq_per_bin = 1 / (slow_time_sample_time * NUM_FFT_POINTS);
+//
+//    uint32_t slow_time_min_bin = 1;
+//    uint32_t slow_time_max_bin = ceil(1.0 / freq_per_bin);
+//
+//    for (int i = 0; i < delta_bin; ++i)
+//    {
+//        fftw_complex* result = fft_handle[i].get_result();
+//
+//        float max = 0.0f;
+//        uint32_t max_index = 0;
+//        for (int i = slow_time_min_bin; i <= slow_time_max_bin; ++i)
+//        {
+//            float abs = sqrt(result[i][REAL] * result[i][REAL] + result[i][IMAG] * result[i][IMAG]);
+//            if (abs >= max)
+//            {
+//                max = abs;
+//                max_index = i;
+//            }
+//        }
+//        cout << (max_index * freq_per_bin) << endl;
+//    }
     cout << "-------------------------------" << endl;
 
     ret = ifx_peak_search_destroy(peak_search);

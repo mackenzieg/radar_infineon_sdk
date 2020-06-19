@@ -88,7 +88,9 @@ class dsp
 
         ofstream data_file;
 
-        float range_interest = 1.9f;
+        fftw_complex integrated[NUM_FFT_POINTS];
+
+        float range_interest = 1.5f;
 
         int num_frames_per_fft;
         int curr_frames_sampled = 0;
