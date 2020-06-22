@@ -78,6 +78,17 @@ class dsp
         fftw_complex signal[NUM_FFT_POINTS];
         fftw_complex result[NUM_FFT_POINTS];
 
+        fftw_complex integrated[NUM_FFT_POINTS];
+
+        float range_interest = 1.5f;
+
+        uint32_t mti_buffer_length;
+
+        uint32_t min_bin;
+        uint32_t max_bin;
+        uint32_t delta_bin;
+        uint32_t important_bin;
+
         int num_frames_per_fft;
         int curr_frames_sampled = 0;
 

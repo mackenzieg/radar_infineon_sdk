@@ -6,8 +6,24 @@
 
 dsp::dsp(radar_config* radar_config) : m_radar_config(radar_config), num_frames_per_fft(NUM_FFT_POINTS / radar_config->get_device_config()->num_chirps_per_frame)
 {
-    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
-    m_mti_test_handle = new mti(m_radar_config, NUM_FFT_POINTS, bin_number - 1, bin_number + 1);
+    float temp_bin = (range_interest / m_radar_config->get_device_metrics()->m_value_per_bin);
+
+    important_bin = (uint32_t) (temp_bin + 0.5f);
+
+    int range = 6;
+
+    if (((int)important_bin) - range < 0)
+    {
+        min_bin = 0;
+    } else {
+        min_bin = important_bin - ((uint32_t)range);
+    }
+    max_bin = important_bin + range;
+    delta_bin = max_bin - min_bin + 1;
+
+    mti_buffer_length = m_radar_config->get_device_metrics()->m_frame_rate * 8;
+
+    m_mti_test_handle = new mti(m_radar_config, mti_buffer_length, min_bin, max_bin);
 
     this->create_spectrum_handle();
     this->create_mti_handle();
@@ -168,42 +184,29 @@ void dsp::run(ifx_Frame_t frame)
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
     // Give MTI filter time to train against clutter
-    if (this->run_count <= MTI_FILTER_TRAIN_FRAMES)
+    if (this->run_count <= mti_buffer_length)
     {
         return;
     }
 
     ret = ifx_peak_search_run(peak_search, &(this->m_mti.mti_result), &fine_peak_result);
 
-    // bin number for 0.5 m
-    uint32_t bin_number = (uint32_t) (0.5f / m_radar_config->get_device_metrics()->m_value_per_bin);
-    //bin_number = 5;
-    //uint32_t bin_number = last_peak_detected;
-//    if (last_peak_detected == -1)
-//    {
-//        last_peak_detected = fine_peak_result.index[0];
-//    }
-
-    //uint32_t bin_number = fine_peak_result.index[0];
-//
-//    ifx_Complex_t avg;
-//    avg.data[REAL] = 0.0f;
-//    avg.data[IMAG] = 0.0f;
-//    for (uint32_t midx = 0; midx < this->m_range_spectrum.frame_fft_half_result.rows; ++midx)
-//    {
-//        ifx_Complex_t element;
-//        ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), midx, bin_number, &element);
-//        avg.data[REAL] += element.data[REAL];
-//        avg.data[IMAG] += element.data[IMAG];
-//    }
-//
-//    avg.data[REAL] /= this->m_range_spectrum.frame_fft_half_result.rows;
-//    avg.data[IMAG] /= this->m_range_spectrum.frame_fft_half_result.rows;
-
     m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
 
+
     ifx_Complex_t element;
-    ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, bin_number, &element);
+    element.data[REAL] = 0.0f;
+    element.data[IMAG] = 0.0f;
+
+    for (int i = min_bin; i <= max_bin; ++i)
+    {
+        ifx_Complex_t temp;
+        ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, i, &temp);
+
+        element.data[REAL] += temp.data[REAL];
+        element.data[IMAG] += temp.data[IMAG];
+    }
+
 
     signal[curr_frames_sampled][REAL] = element.data[REAL];
     signal[curr_frames_sampled][IMAG] = element.data[IMAG];
@@ -215,14 +218,6 @@ void dsp::run(ifx_Frame_t frame)
     }
 
     curr_frames_sampled = 0;
-
-
-    // Windowing
-//    for (int i = 0; i < NUM_FFT_POINTS; ++i)
-//    {
-//        signal[i][REAL] *= doppler_fft_window.data[i] * doppler_window_scale;
-//        signal[i][IMAG] *= doppler_fft_window.data[i] * doppler_window_scale;
-//    }
 
     double avg_real = 0.0;
     double avg_imag = 0.0;
