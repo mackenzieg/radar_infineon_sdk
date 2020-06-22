@@ -90,7 +90,7 @@ class dsp
 
         fftw_complex integrated[NUM_FFT_POINTS];
 
-        float range_interest = 1.5f;
+        float range_interest = 1.0f;
 
         int num_frames_per_fft;
         int curr_frames_sampled = 0;

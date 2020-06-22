@@ -2,7 +2,7 @@
 
 radar_config::radar_config()
 {
-    m_device_metrics.m_range_resolution = 0.018f;
+    m_device_metrics.m_range_resolution = 0.04f;
     m_device_metrics.m_maximum_range = 2.5f;
     m_device_metrics.m_minimum_range = 0.2f;
     m_device_metrics.m_speed_resolution = 2.0f;

@@ -262,45 +262,36 @@ void dsp::run(ifx_Frame_t frame)
         }
         fftw_complex* signal = fft_handle[i].get_signal();
 
+        data_file << "curr_bin: " << curr_bin << endl;
+        data_file << "real: " << curr_bin << endl;
 
+        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+        {
+            float abs = signal[i][REAL];
+            //float abs = signal[i][REAL];
+            data_file << std::setprecision(40) << abs;
 
-//        fftw_complex* result = fft_handle[i].get_result();
-//        if (result == nullptr)
-//        {
-//            return;
-//        }
-//        fftw_complex* signal = fft_handle[i].get_signal();
-//
-//        data_file << "curr_bin: " << curr_bin << endl;
-//        data_file << "real: " << curr_bin << endl;
-//
-//        for (int i = 0; i < NUM_FFT_POINTS; ++i)
-//        {
-//            float abs = signal[i][REAL];
-//            //float abs = signal[i][REAL];
-//            data_file << std::setprecision(40) << abs;
-//
-//            if (i < NUM_FFT_POINTS - 1)
-//            {
-//                data_file << ", ";
-//            }
-//        }
-//        data_file << endl;
-//        data_file << "imag: " << curr_bin << endl;
-//
-//        for (int i = 0; i < NUM_FFT_POINTS; ++i)
-//        {
-//            //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
-//            float abs = signal[i][IMAG];
-//
-//            data_file << std::setprecision(40) << abs;
-//
-//            if (i < NUM_FFT_POINTS - 1)
-//            {
-//                data_file << ", ";
-//            }
-//        }
-//        data_file << endl;
+            if (i < NUM_FFT_POINTS - 1)
+            {
+                data_file << ", ";
+            }
+        }
+        data_file << endl;
+        data_file << "imag: " << curr_bin << endl;
+
+        for (int i = 0; i < NUM_FFT_POINTS; ++i)
+        {
+            //float abs = sqrt(signal[i][REAL] * signal[i][REAL] + signal[i][IMAG] * signal[i][IMAG]);
+            float abs = signal[i][IMAG];
+
+            data_file << std::setprecision(40) << abs;
+
+            if (i < NUM_FFT_POINTS - 1)
+            {
+                data_file << ", ";
+            }
+        }
+        data_file << endl;
     }
 
 //    double slow_time_sample_time = ((double)m_radar_config->get_device_config()->frame_period_us) / pow(10 , 6);
