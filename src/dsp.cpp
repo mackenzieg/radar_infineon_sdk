@@ -200,7 +200,7 @@ void dsp::run(ifx_Frame_t frame)
 
     ret = ifx_mti_run(this->m_mti.mti_handle, &(this->m_mti.mti_result));
 
-    //m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
+    m_mti_test_handle->train_average(&(this->m_range_spectrum.frame_fft_half_result));
 
     // Give MTI filter time to train against clutter
     if (this->run_count <= mti_buffer_length)

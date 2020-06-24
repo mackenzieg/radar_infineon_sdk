@@ -7,6 +7,7 @@
 #include "radar_control.hpp"
 #include "radar_config.hpp"
 
+
 #ifdef LINUX
 #include <unistd.h>
 #endif
@@ -49,6 +50,13 @@ int main(int argc, char** argv)
     cout << "Creating device handle and dsp chain" << endl;
 
     radar_config rc;
+
+    json config;
+    config["packet_type"] = "configuration";
+    config["sdk_version"] = ifx_radar_sdk_get_version_string();
+    config["config"] = rc.create_json();
+
+    cout << config << endl;
 
     radar_control radar_control(&rc);
 

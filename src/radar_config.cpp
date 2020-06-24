@@ -2,7 +2,7 @@
 
 radar_config::radar_config()
 {
-    m_device_metrics.m_range_resolution = 0.04f;
+    m_device_metrics.m_range_resolution = 0.03f;
     m_device_metrics.m_maximum_range = 2.5f;
     m_device_metrics.m_minimum_range = 0.2f;
     m_device_metrics.m_speed_resolution = 2.0f;
@@ -145,6 +145,29 @@ void radar_config::compute_metrics()
     };
 
     m_device_metrics.m_value_per_bin = (float) (300000.0f / ((m_device_config.upper_frequency_kHz - m_device_config.lower_frequency_kHz) * 2 * (m_device_metrics.m_range_fft_size / m_device_config.num_samples_per_chirp )));
+}
+
+json radar_config::create_json()
+{
+    json config;
+    
+    config["range_resolution"] = m_device_metrics.m_range_resolution;
+    config["maximum_range"]    = m_device_metrics.m_maximum_range;
+    config["minimum_range"]    = m_device_metrics.m_minimum_range;
+    config["speed_resolution"] = m_device_metrics.m_speed_resolution;
+    config["maximum_speed"]    = m_device_metrics.m_maximum_speed;
+
+    config["frame_rate"]        = m_device_metrics.m_frame_rate;
+    config["adc_samplerate_hz"] = m_device_metrics.m_adc_samplerate_hz;
+    config["bgt_tx_power"]      = m_device_metrics.m_bgt_tx_power;
+    config["rx_antenna_number"] = m_device_metrics.m_rx_antenna_number;
+    config["if_gain_db"]        = m_device_metrics.m_if_gain_db;
+
+    config["fmcw_center_frequency_khz"] = m_device_metrics.m_fmcw_center_frequency_khz;
+    config["lower_frequency_khz"] = m_device_config.lower_frequency_kHz;
+    config["upper_frequency_khz"] = m_device_config.upper_frequency_kHz;
+
+    return config;
 }
 
 device_metrics_t* radar_config::get_device_metrics()
