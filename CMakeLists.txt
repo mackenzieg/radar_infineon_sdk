@@ -3,9 +3,10 @@ project(radar_sdk)
 
 set(CMAKE_CXX_STANDARD 11)
 file(GLOB_RECURSE SOURCES
-        src/*.cpp)
+        src/*.cpp
+        externals/socket-cpp/Socket/*.cpp)
 
-include_directories(include externals/radar_sdk/include /usr/local/include)
+include_directories(include externals/radar_sdk/include /usr/local/include externals/socket-cpp/Socket)
 
 add_executable(radar_sdk ${SOURCES})
 
