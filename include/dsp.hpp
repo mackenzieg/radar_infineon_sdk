@@ -12,6 +12,8 @@
 
 #include "mti.hpp"
 #include "radar_config.hpp"
+
+#include "json.hpp"
 #include "fft_circular.hpp"
 
 #include <iostream>
@@ -29,7 +31,7 @@ class dsp
         dsp(radar_config *radar_config);
         virtual ~dsp();
 
-        void run(ifx_Frame_t frame);
+        json run(ifx_Frame_t frame);
 
     protected:
 
