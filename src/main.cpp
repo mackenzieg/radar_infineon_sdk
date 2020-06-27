@@ -8,13 +8,7 @@
 #include "radar_control.hpp"
 #include "radar_config.hpp"
 
-#include "TCPClient.h"
-
-#include <sys/socket.h>
-#include <netinet/in.h>
-
-#define PORT "4242"
-#define HOST "192.178.0.101"
+#include <boost/asio.hpp>
 
 #ifdef LINUX
 #include <unistd.h>
@@ -27,7 +21,11 @@
 #include <fstream>
 #include <iomanip>
 
-using namespace std;
+using namespace boost::asio;
+using ip::tcp;
+using std::string;
+using std::cout;
+using std::endl;
 
 void sleep_ms(int sleepMs)
 {
@@ -47,22 +45,6 @@ void signal_handle(int sig)
         return;
 
     running = false;
-}
-
-void connect_server(int sock, sockaddr_in* addr)
-{
-    while  (true)
-    {
-        cout << "Trying connection to host" << endl;
-        int val = connect(sock, (struct sockaddr *)addr, sizeof(addr));
-        cout << val << endl;
-        if (val >= 0)
-        {
-            return;
-        }
-        cout << "Failed, retrying in 1000ms" << endl;
-        sleep_ms(1000);
-    }
 }
 
 #define BUFF_SIZE 1024
@@ -101,14 +83,7 @@ void send_string(int sock, string data)
     send_data(sock, data.c_str(), &length);
 }
 
-uint32_t parseIPV4string(char* ipAddress) {
-    char ipbytes[4];
-    sscanf(ipAddress, "%uhh.%uhh.%uhh.%uhh", &ipbytes[3], &ipbytes[2], &ipbytes[1], &ipbytes[0]);
-    return ipbytes[0] | ipbytes[1] << 8 | ipbytes[2] << 16 | ipbytes[3] << 24;
-}
-
 auto LogPrinter = [](const std::string& strLogMsg) { std::cout << strLogMsg << std::endl;  };
-
 
 int main(int argc, char** argv)
 {
@@ -120,25 +95,17 @@ int main(int argc, char** argv)
 
     radar_config rc;
 
-    int sock_cli = socket(AF_INET, SOCK_STREAM, 0);
+    boost::asio::io_service io_service;
 
-    const char ip[] = "192.168.0.101";
-    int portNum = 4242;
+    tcp::socket socket(io_service);
 
-    struct sockaddr_in server_addr;
-
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(portNum);
-    inet_aton(ip, &server_addr.sin_addr);
-
-    connect_server(sock_cli, &server_addr);
+    socket.connect( tcp::endpoint( boost::asio::ip::address::from_string("192.168.0.101"), 4242 ));
+    boost::system::error_code error;
 
     json config;
     config["packet_type"] = "configuration";
     config["sdk_version"] = ifx_radar_sdk_get_version_string();
     config["config"] = rc.create_json();
-
-    cout << config << endl;
 
     radar_control radar_control(&rc);
 
@@ -148,11 +115,15 @@ int main(int argc, char** argv)
 
     cout << "Sending configuration file" << endl;
 
-    send_string(sock_cli, config_str);
+    uint32_t len = config_str.length();
+    boost::asio::write( socket, boost::asio::buffer(&len, 4), error );
+    boost::asio::write( socket, boost::asio::buffer(config_str), error );
 
     cout << "Starting loop" << endl;
 
     ifx_Error_t ret = IFX_OK;
+
+    int x = 0;
 	while (running)
     {
         ret = radar_control.pull_frame();
@@ -164,6 +135,8 @@ int main(int argc, char** argv)
 
         ifx_Frame_t frame = radar_control.get_frame();
 
+
+
         json data;
         data["packet_type"] = "data";
         data["data"] = dsp.run(frame);
@@ -171,7 +144,19 @@ int main(int argc, char** argv)
         string data_str = data.dump();
         uint32_t length = data_str.length();
 
-        send_string(sock_cli, data_str);
+        uint32_t len = data_str.length();
+        boost::asio::write( socket, boost::asio::buffer(&len, 4), error );
+        boost::asio::write( socket, boost::asio::buffer(data_str), error );
+
+        int fr = rc.get_device_metrics()->m_frame_rate * 2;
+
+        if (x == 0)
+        {
+            cout << "Sending data..." << endl;
+        }
+
+        ++x;
+        x %= fr;
     }
 
 	cout << "Closing connection" << endl;
