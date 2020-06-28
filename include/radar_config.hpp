@@ -6,6 +6,9 @@
 #include "ifxRadar_Window.h"
 #include "ifxRadar_RangeSpectrum.h"
 
+#include "json.hpp"
+using json = nlohmann::json;
+
 typedef struct
 {
     float m_range_resolution;   /**< The range resolution is the distance between two consecutive
@@ -68,6 +71,8 @@ class radar_config
         device_metrics_t* get_device_metrics();
         ifx_Device_Config_t* get_device_config();
         ifx_Range_Spectrum_Config_t* get_range_spectrum_config();
+
+        json create_json();
 
     protected:
 
