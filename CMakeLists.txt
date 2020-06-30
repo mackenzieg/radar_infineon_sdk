@@ -15,10 +15,9 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 set(CMAKE_CXX_STANDARD 11)
 file(GLOB_RECURSE SOURCES
-        src/*.cpp
-        externals/socket-cpp/Socket/*.cpp)
+        src/*.cpp)
 
-include_directories(include externals/radar_sdk/include /usr/local/include externals/socket-cpp/Socket)
+include_directories(include externals/radar_sdk/include /usr/local/include)
 
 add_executable(radar_sdk ${SOURCES})
 
