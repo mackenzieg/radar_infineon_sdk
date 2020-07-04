@@ -2,13 +2,13 @@
 
 radar_config::radar_config()
 {
-    m_device_metrics.m_range_resolution = 0.1f;
+    m_device_metrics.m_range_resolution = 0.25f;
     m_device_metrics.m_maximum_range = 2.5f;
     m_device_metrics.m_minimum_range = 0.2f;
     m_device_metrics.m_speed_resolution = 2.0f;
     m_device_metrics.m_maximum_speed = 2.0f;
 
-    m_device_metrics.m_frame_rate = 4;
+    m_device_metrics.m_frame_rate = 10;
     m_device_metrics.m_adc_samplerate_hz = 1000000;
     m_device_metrics.m_bgt_tx_power = 31;
     m_device_metrics.m_rx_antenna_number = DEVICE_RX_ANTENNA1 | DEVICE_RX_ANTENNA2 | DEVICE_RX_ANTENNA3;
