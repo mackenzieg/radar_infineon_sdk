@@ -150,25 +150,31 @@ json dsp::run(ifx_Frame_t frame)
     this->run_count += 1;
 
     ifx_Matrix_R_t rx_data = frame.rx_data[0];
-    /*************************************************************************************/
-    /*                                    Range Processing                               */
-    /*************************************************************************************/
-    ifx_range_spectrum_run_r(this->m_range_spectrum.range_spectrum_handle, &rx_data, &(this->m_range_spectrum.fft_spectrum_result));
-
-    ifx_range_spectrum_get_fft_transformed_matrix(this->m_range_spectrum.range_spectrum_handle, &(this->m_range_spectrum.frame_fft_half_result));
+    ifx_Matrix_R_t rx_data1 = frame.rx_data[1];
+    ifx_Matrix_R_t rx_data2 = frame.rx_data[2];
 
     json data;
 
-    data["real"] = std::vector<float>(this->m_range_spectrum.frame_fft_half_result.columns);
-    data["imag"] = std::vector<float>(this->m_range_spectrum.frame_fft_half_result.columns);
+    data["frame"] = std::vector<float>(rx_data.columns);
 
-    for (uint32_t i = 0; i < this->m_range_spectrum.frame_fft_half_result.columns; ++i)
+
+    for (int i = 0; i < rx_data.columns; ++i)
     {
-        ifx_Complex_t element;
-        ifx_matrix_get_element_c(&(this->m_range_spectrum.frame_fft_half_result), 0, i, &element);
-        data["real"][i] = element.data[REAL];
-        data["imag"][i] = element.data[IMAG];
+//        float element;
+//        float element1;
+//        float element2;
+//        ifx_matrix_get_element_r(&rx_data, 0, i, &element);
+//        ifx_matrix_get_element_r(&rx_data1, 0, i, &element1);
+//        ifx_matrix_get_element_r(&rx_data2, 0, i, &element2);
+//        data["frame"][i] = element + element1 + element2;
+
+
+        float element;
+        ifx_matrix_get_element_r(&rx_data, 0, i, &element);
+
+        data["frame"][i] = element;
     }
+
 
     return data;
 }
