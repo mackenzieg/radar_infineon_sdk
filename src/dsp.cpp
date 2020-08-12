@@ -150,17 +150,31 @@ json dsp::run(ifx_Frame_t frame)
     this->run_count += 1;
 
     ifx_Matrix_R_t rx_data = frame.rx_data[0];
+    ifx_Matrix_R_t rx_data1 = frame.rx_data[1];
+    ifx_Matrix_R_t rx_data2 = frame.rx_data[2];
 
     json data;
 
     data["frame"] = std::vector<float>(rx_data.columns);
 
+
     for (int i = 0; i < rx_data.columns; ++i)
     {
+//        float element;
+//        float element1;
+//        float element2;
+//        ifx_matrix_get_element_r(&rx_data, 0, i, &element);
+//        ifx_matrix_get_element_r(&rx_data1, 0, i, &element1);
+//        ifx_matrix_get_element_r(&rx_data2, 0, i, &element2);
+//        data["frame"][i] = element + element1 + element2;
+
+
         float element;
         ifx_matrix_get_element_r(&rx_data, 0, i, &element);
+
         data["frame"][i] = element;
     }
+
 
     return data;
 }
