@@ -99,6 +99,24 @@ int main(int argc, char** argv)
 
     tcp::socket socket(io_service);
 
+    // the timeout value
+    unsigned int timeout_milli = 5000;
+
+    // platform-specific switch
+    #if defined _WIN32 || defined WIN32 || defined OS_WIN64 || defined _WIN64 || defined WIN64 || defined WINNT
+        // use windows-specific time
+      int32_t timeout = timeout_milli;
+      setsockopt(socket.native_handle(), SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
+      setsockopt(socket.native_handle(), SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
+    #else
+        // assume everything else is posix
+        struct timeval tv;
+        tv.tv_sec  = timeout_milli / 1000;
+        tv.tv_usec = (timeout_milli % 1000) * 1000;
+        setsockopt(socket.native_handle(), SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+        setsockopt(socket.native_handle(), SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+    #endif
+
     socket.connect( tcp::endpoint( boost::asio::ip::address::from_string("192.168.0.101"), 4242 ));
     boost::system::error_code error;
 
