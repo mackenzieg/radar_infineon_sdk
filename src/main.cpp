@@ -21,11 +21,16 @@
 #include <fstream>
 #include <iomanip>
 
+#include <boost/program_options.hpp>
+namespace po = boost::program_options;
+
 using namespace boost::asio;
 using ip::tcp;
 using std::string;
 using std::cout;
 using std::endl;
+
+using namespace std;
 
 void sleep_ms(int sleepMs)
 {
@@ -87,6 +92,16 @@ auto LogPrinter = [](const std::string& strLogMsg) { std::cout << strLogMsg << s
 
 int main(int argc, char** argv)
 {
+    if (argc < 2) {
+        cerr << "Missing second argument (ip address)." << endl;
+        cerr << "./radar_sdk <192.168.0.1>" << endl;
+        return 1;
+    } else if (argc > 2)  {
+        cerr << "Too many arguments!" << endl;
+        cerr << "Example usage: ./radar_sdk <192.168.0.1>" << endl;
+        return 1;
+    }
+
     signal(SIGINT, signal_handle);
 
     cout << "Running Radar SDK version: " << ifx_radar_sdk_get_version_string() << endl;
@@ -94,6 +109,8 @@ int main(int argc, char** argv)
     cout << "Creating device handle and dsp chain" << endl;
 
     radar_config rc;
+
+    cout << "Connecting to server " << argv[1] << ":4242" << endl;
 
     boost::asio::io_service io_service;
 
@@ -117,7 +134,7 @@ int main(int argc, char** argv)
         setsockopt(socket.native_handle(), SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
     #endif
 
-    socket.connect( tcp::endpoint( boost::asio::ip::address::from_string("192.168.0.101"), 4242 ));
+    socket.connect( tcp::endpoint( boost::asio::ip::address::from_string(argv[1]), 4242 ));
     boost::system::error_code error;
 
     json config;
